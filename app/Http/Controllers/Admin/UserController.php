@@ -5,80 +5,64 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $busqueda = $request->busqueda;
+        $users=User::where('name','LIKE','%'.$busqueda.'%')
+        ->orWhere('email','LIKE','%'.$busqueda.'%')
+        ->latest('id')
+        ->paginate(10);
+        return view('admin.users.index',compact('users','busqueda'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $roles = Role::where('id','>',1)->pluck('name','id');
+        return view('admin.users.create',compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'password'=>'required',
+            'email'=>'required|email|unique:users',
+        ]);
+        $request;
+        $user = User::create([
+            'name'=>$request->name,
+            'password'=>bcrypt($request->password),
+            'email'=>$request->email,
+            'role_id'=>$request->role_id,
+        ]);
+        $user->roles()->sync($request->role_id);
+        return redirect()->route('users.index')->with(['estado'=>'success','titulo'=>'Guardado!','texto'=>'Se guardó correctamente']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(User $user)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(User $user)
     {
-        //
+        $roles = Role::where('id','>',1)->pluck('name','id');
+        return view('admin.users.edit',compact('user','roles'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, User $user)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(User $user)
     {
         //

@@ -249,7 +249,7 @@ return [
             'text'          => 'Usuarios',
             'route'         => 'users.index',
             'icon'          => 'fas fa-fw fa-user',
-            #'active'        => ['users*'],
+            'active'        => ['users*'],
             #'can'           => 'users.index',
         ],
         [
