@@ -27,6 +27,11 @@
         <!-- /.card-tools -->
     </div>
     <div class="card-body">
+        @if (session('estado'))
+            <div class="alert alert-{{session('estado')}}">
+                <strong>{{session('texto')}}</strong>
+            </div>
+        @endif
         <div class="d-md-flex justify-content-md-end">
             <form action="{{ route('users.index') }}" method="GET">
                 <div class="btn-group">
@@ -43,6 +48,7 @@
         <table class="table table-striped">
             <thead>
                 <td>ID</td>
+                <td>ROL</td>
                 <td>CORREO</td>
                 <td>NOMBRE</td>
                 <td>ESTADO</td>
@@ -53,6 +59,7 @@
                 @foreach ($users as $user)
                     <tr>
                         <td>{{$user->id}}</td>
+                        <td>{{$user->getRole()->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->name}}</td>
                         <td>@if($user->estado==0)<p class="badge bg-success">Habilitado</p> @else <p class="badge bg-warning">Deshabilitado</p> @endif</td>
@@ -60,14 +67,21 @@
                         <td class="btn-group">
                             {{-- <a class="btn btn-primary" href="{{ route('users.show', $user) }}"><i class="fas fa-list-alt"></i></a> --}}
                             {{-- @can('users.edit') --}}
+                            @if ($user->trashed())
+                            @else 
                                 <a class="btn btn-warning" href="{{ route('users.edit', $user) }}"><i class="fas fa-edit"></i></a>
+                            @endif
                             {{-- @endcan --}}
                             {{-- @can('users.destroy') --}}
+                            @if ($user->trashed())
+                            <a class="btn btn-success" href="{{ route('users.restore', $user->id) }}"><i class="fas fa-redo-alt"></i></a>
+                            @else 
                             <form action="{{ route('users.destroy', $user) }}" method="POST" class="formulario-eliminar">
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button>
                             </form>
+                            @endif
                         {{-- @endcan  --}}
                         </td>
                     </tr>
@@ -88,5 +102,35 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('estado')=='danger')
+        <script>
+            Swal.fire(
+                '{{session("titulo")}}!',
+                '{{session("texto")}}',
+                'success'
+            )
+        </script>
+    @endif
+<script>
+    $('.formulario-eliminar').submit(function(e){
+        e.preventDefault();
+        Swal.fire({
+        title: 'Estás seguro?',
+        text: "El registro se eliminará definitivamente!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Eliminar!',
+        cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })        
+
+    })
+    
+</script> 
 @stop

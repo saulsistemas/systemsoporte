@@ -23,6 +23,10 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->integer('role_id')->nullable();
+
+            #$table->unsignedBigInteger('role_id')->nullable();
+            #$table->foreign('role_id')->references('id')->on('roles');
+
             $table->softDeletes();
             $table->timestamps();
         });
