@@ -238,11 +238,12 @@ return [
 
         // Sidebar items:
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Inicio',
+            'route'       => 'home',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
+            #'can'           => 'home',
         ],
         ['header' => 'account_settings'],
         [
@@ -251,6 +252,13 @@ return [
             'icon'          => 'fas fa-fw fa-user',
             'active'        => ['users*'],
             #'can'           => 'users.index',
+        ],
+        [
+            'text'          => 'Permisos',
+            'route'         => 'roles.index',
+            'icon'          => 'fas fa-user-lock',
+            'active'        => ['roles*'],
+            #'can'           => 'roles.index',
         ],
         [
             'text' => 'change_password',

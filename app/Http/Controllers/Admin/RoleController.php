@@ -34,7 +34,8 @@ class RoleController extends Controller
         
         $role = Role::create(['name' => $request->name]);
         $role->permissions()->sync($request->permissions);
-        return redirect()->route('roles.edit',$role)->with('info','Se creo Rol correctament');
+        #return redirect()->route('roles.edit',$role)->with(['estado'=>'success','titulo'=>'Guardado!','texto'=>'Se guardó correctamente']);
+        return redirect()->route('roles.index')->with(['estado'=>'success','titulo'=>'Guardado!','texto'=>'Se guardó correctamente']);
         
     }
 
@@ -52,13 +53,14 @@ class RoleController extends Controller
         ]);
         $role->update($request->all());
         $role->permissions()->sync($request->permissions);
-        return redirect()->route('roles.edit',$role)->with('info','Se editó Rol correctamente');
+        return redirect()->route('roles.index')->with(['estado'=>'warning','titulo'=>'Modificado!','texto'=>'Se modificó correctamente']);
+        #return redirect()->route('roles.edit',$role)->with(['estado'=>'warning','titulo'=>'Modificado!','texto'=>'Se modificó correctamente']);
     }
 
 
     public function destroy(Role $role)
     {
         $role->delete();
-        return redirect()->route('roles.index')->with('info','Se elimino Rol correctamente');
+        return redirect()->route('roles.index')->with(['estado'=>'danger','titulo'=>'Eliminado!','texto'=>'Se eliminó correctamente']);
     }
 }
