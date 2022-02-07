@@ -9,6 +9,15 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        #ESTO FUNCIONA PARA EL CONTROLADOR - SE TIENE QUE PONER CASO CONTRARIO ACCEDEN POR LA RUTA
+        $this->middleware('can:users.index')->only('index');
+        $this->middleware('can:users.create')->only('create','store');
+        $this->middleware('can:users.edit')->only('edit','update');
+        $this->middleware('can:users.destroy')->only('destroy');
+        $this->middleware('can:users.restore')->only('restore');
+    }
     public function index(Request $request)
     {
         $busqueda = $request->busqueda;

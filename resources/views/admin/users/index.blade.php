@@ -41,9 +41,9 @@
             </form>
         </div> 
         <div>
-            {{-- @can('users.create') --}}
+            @can('users.create')
                 <a href="{{ route('users.create') }}" class="btn btn-primary"><i class="fas fa-plus-square"></i></a>
-            {{-- @endcan --}}
+            @endcan
         </div> 
         <table class="table table-striped">
             <thead>
@@ -62,27 +62,29 @@
                         <td>@if ($user->getRole()){{$user->getRole()->name}} @else @endif</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->name}}</td>
-                        <td>@if($user->estado==0)<p class="badge bg-success">Habilitado</p> @else <p class="badge bg-warning">Deshabilitado</p> @endif</td>
+                        <td>@if(!$user->trashed())<p class="badge bg-success">ACTIVO</p> @else <p class="badge bg-danger">ELIMINADO</p> @endif</td>
                         <td>{{$user->created_at}}</td>
                         <td class="btn-group">
                             {{-- <a class="btn btn-primary" href="{{ route('users.show', $user) }}"><i class="fas fa-list-alt"></i></a> --}}
-                            {{-- @can('users.edit') --}}
+                            @can('users.edit')
                             @if ($user->trashed())
                             @else 
                                 <a class="btn btn-warning" href="{{ route('users.edit', $user) }}"><i class="fas fa-edit"></i></a>
                             @endif
-                            {{-- @endcan --}}
-                            {{-- @can('users.destroy') --}}
+                            @endcan
                             @if ($user->trashed())
-                            <a class="btn btn-success" href="{{ route('users.restore', $user->id) }}"><i class="fas fa-redo-alt"></i></a>
+                                @can('users.restore')
+                                <a class="btn btn-success" href="{{ route('users.restore', $user->id) }}"><i class="fas fa-redo-alt"></i></a>
+                                @endcan 
                             @else 
-                            <form action="{{ route('users.destroy', $user) }}" method="POST" class="formulario-eliminar">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button>
-                            </form>
+                                @can('users.destroy')
+                                <form action="{{ route('users.destroy', $user) }}" method="POST" class="formulario-eliminar">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                                @endcan 
                             @endif
-                        {{-- @endcan  --}}
                         </td>
                     </tr>
                 @endforeach

@@ -41,15 +41,14 @@
             </form>
         </div> 
         <div>
-            {{-- @can('roles.create') --}}
+            @can('roles.create')
                 <a href="{{ route('roles.create') }}" class="btn btn-primary"><i class="fas fa-plus-square"></i></a>
-            {{-- @endcan --}}
+            @endcan
         </div> 
         <table class="table table-striped">
             <thead>
                 <td>ID</td>
                 <td>NOMBRE</td>
-                <td>ESTADO</td>
                 <td>CREADO</td>
                 <td>OPCIONES</td>
             </thead>
@@ -58,20 +57,19 @@
                     <tr>
                         <td>{{$role->id}}</td>
                         <td>{{$role->name}}</td>
-                        <td>@if($role->estado==0)<p class="badge bg-success">Habilitado</p> @else <p class="badge bg-warning">Deshabilitado</p> @endif</td>
                         <td>{{$role->created_at}}</td>
                         <td class="btn-group">
                             {{-- <a class="btn btn-primary" href="{{ route('roles.show', $role) }}"><i class="fas fa-list-alt"></i></a> --}}
-                            {{-- @can('roles.edit') --}}
+                            @can('roles.edit')
                                 <a class="btn btn-warning" href="{{ route('roles.edit', $role) }}"><i class="fas fa-edit"></i></a>
-                            {{-- @endcan --}}
-                            {{-- @can('roles.destroy') --}}
-                            <form action="{{ route('roles.destroy', $role) }}" method="POST" class="formulario-eliminar">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button>
-                            </form>
-                        {{-- @endcan  --}}
+                            @endcan
+                            @can('roles.destroy')
+                                <form action="{{ route('roles.destroy', $role) }}" method="POST" class="formulario-eliminar">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                            @endcan 
                         </td>
                     </tr>
                 @endforeach

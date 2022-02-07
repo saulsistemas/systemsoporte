@@ -243,7 +243,7 @@ return [
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
-            #'can'           => 'home',
+            'can'           => 'home',
         ],
         ['header' => 'account_settings'],
         [
@@ -251,14 +251,14 @@ return [
             'route'         => 'users.index',
             'icon'          => 'fas fa-fw fa-user',
             'active'        => ['users*'],
-            #'can'           => 'users.index',
+            'can'           => 'users.index',
         ],
         [
             'text'          => 'Permisos',
             'route'         => 'roles.index',
             'icon'          => 'fas fa-user-lock',
             'active'        => ['roles*'],
-            #'can'           => 'roles.index',
+            'can'           => 'roles.index',
         ],
         [
             'text' => 'change_password',
