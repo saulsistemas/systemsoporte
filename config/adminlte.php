@@ -261,9 +261,11 @@ return [
             'can'           => 'roles.index',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text'          => 'Proyectos',
+            'route'         => 'projects.index',
+            'icon'          => 'fas fa-project-diagram',
+            'active'        => ['projects*'],
+            'can'           => 'projects.index',
         ],
         [
             'text'    => 'multilevel',
