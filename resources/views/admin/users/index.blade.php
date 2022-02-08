@@ -48,9 +48,12 @@
         <table class="table table-striped">
             <thead>
                 <td>ID</td>
+                <td>EMPRESA</td>
+                <td>SEDE</td>
                 <td>ROL</td>
                 <td>CORREO</td>
                 <td>NOMBRE</td>
+                <td>APELLIDO</td>
                 <td>ESTADO</td>
                 <td>CREADO</td>
                 <td>OPCIONES</td>
@@ -59,9 +62,12 @@
                 @foreach ($users as $user)
                     <tr>
                         <td>{{$user->id}}</td>
+                        <td>{{$user->office->company->name}}</td>
+                        <td>{{$user->office->name}}</td>
                         <td>@if ($user->getRole()){{$user->getRole()->name}} @else @endif</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->name}}</td>
+                        <td>{{$user->last_name}}</td>
                         <td>@if(!$user->trashed())<p class="badge bg-success">ACTIVO</p> @else <p class="badge bg-danger">ELIMINADO</p> @endif</td>
                         <td>{{$user->created_at}}</td>
                         <td class="btn-group">

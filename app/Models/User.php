@@ -31,6 +31,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'last_name',
+        'office_id',
     ];
 
     /**
@@ -62,8 +64,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
+    #relacion 1 a muchos inversa (PERTENECE A UNA OFICINA)
+    public function office(){
+        return $this->belongsTo(Office::class);
+    }
     public function getRole(){
         return $role = Role::find($this->role_id);
     }
+    
 }

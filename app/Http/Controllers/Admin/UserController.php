@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
+use App\Models\Office;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -32,20 +34,25 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::where('id','>',1)->pluck('name','id');
-        return view('admin.users.create',compact('roles'));
+        $companies = Company::join("offices","offices.company_id"  , "=",  "companies.id")
+            ->get(['offices.id','offices.name as oficina','companies.name as empresa' , ]);
+        return view('admin.users.create',compact('roles','companies'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name'=>'required',
+            'office_id'=>'required',
             'password'=>'required',
             'email'=>'required|email|unique:users',
         ]);
         $user = User::create([
             'name'=>$request->name,
+            'last_name'=>$request->last_name,
             'password'=>bcrypt($request->password),
             'email'=>$request->email,
+            'office_id'=>$request->office_id,
             'role_id'=>$request->role_id,
         ]);
         $user->roles()->sync($request->role_id);
@@ -60,17 +67,22 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::where('id','>',1)->pluck('name','id');
-        return view('admin.users.edit',compact('user','roles'));
+        $companies = Company::join("offices","offices.company_id"  , "=",  "companies.id")
+            ->get(['offices.id','offices.name as oficina','companies.name as empresa' , ]);
+        return view('admin.users.edit',compact('user','roles','companies'));
     }
     
     public function update(Request $request, User $user)
     {
         $request->validate([
             'name'=>'required',
+            'office_id'=>'required',
             'role_id'=>'required',
         ]);
         $user->name = $request->name;
         $user->role_id = $request->role_id;
+        $user->last_name = $request->last_name;
+        $user->office_id = $request->office_id;
         $password = $request->password;
         if ($password) {
             $user->password =bcrypt($password);
