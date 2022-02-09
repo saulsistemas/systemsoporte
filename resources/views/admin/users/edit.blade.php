@@ -11,7 +11,7 @@
     <div class="card-header">
         <h3 class="card-title">Editar Usuarios</h3>
         <div class="card-tools">
-            <a href="{{ route('home') }}" class="btn btn-tool" >
+            <a href="{{ route('admin.home') }}" class="btn btn-tool" >
                 <i class="fas fa-sync-alt"></i>
             </a>
             <button type="button" class="btn btn-tool" data-card-widget="maximize">
@@ -27,7 +27,7 @@
         <!-- /.card-tools -->
     </div>
     <div class="card-body">
-        {!! Form::model($user,['route'=>['users.update',$user], 'autocomplete'=>'off','method'=>'put']) !!}
+        {!! Form::model($user,['route'=>['admin.users.update',$user], 'autocomplete'=>'off','method'=>'put']) !!}
             @include('admin.users.includes.formedit')
             {!! Form::submit('Editar', ['class'=>'btn btn-success']) !!}
         {!! Form::close() !!}

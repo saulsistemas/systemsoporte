@@ -11,7 +11,7 @@
     <div class="card-header">
         <h3 class="card-title">Listado Usuarios</h3>
         <div class="card-tools">
-            <a href="{{ route('users.index') }}" class="btn btn-tool" >
+            <a href="{{ route('admin.users.index') }}" class="btn btn-tool" >
                 <i class="fas fa-sync-alt"></i>
             </a>
             <button type="button" class="btn btn-tool" data-card-widget="maximize">
@@ -33,16 +33,16 @@
             </div>
         @endif
         <div class="d-md-flex justify-content-md-end">
-            <form action="{{ route('users.index') }}" method="GET">
+            <form action="{{ route('admin.users.index') }}" method="GET">
                 <div class="btn-group">
-                    <input type="text" name="busqueda" class="form-control">
+                    <input type="text" name="busqueda" class="form-control" placeholder="Nombre">
                     <button type="submit" class="btn btn-primary" ><i class="fas fa-search-plus"></i></button>
                 </div>
             </form>
         </div> 
         <div>
-            @can('users.create')
-                <a href="{{ route('users.create') }}" class="btn btn-primary"><i class="fas fa-plus-square"></i></a>
+            @can('admin.users.create')
+                <a href="{{ route('admin.users.create') }}" class="btn btn-primary"><i class="fas fa-plus-square"></i></a>
             @endcan
         </div> 
         <table class="table table-striped">
@@ -55,7 +55,8 @@
                 <td>NOMBRE</td>
                 <td>APELLIDO</td>
                 <td>ESTADO</td>
-                <td>CREADO</td>
+                <td>REGISTRO</td>
+                <td>CELULAR</td>
                 <td>OPCIONES</td>
             </thead>
             <tbody>
@@ -68,23 +69,24 @@
                         <td>{{$user->email}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->last_name}}</td>
-                        <td>@if(!$user->trashed())<p class="badge bg-success">ACTIVO</p> @else <p class="badge bg-danger">ELIMINADO</p> @endif</td>
-                        <td>{{$user->created_at}}</td>
+                        <td>@if($user->status==1)<p class="badge bg-success">ACTIVO</p> @else <p class="badge bg-warning">DESACTIVADO</p> @endif</td>
+                        <td>@if(!$user->trashed())<p class="badge bg-success">REGISTRADO</p> @else <p class="badge bg-danger">ELIMINADO</p> @endif</td>
+                        <td>{{$user->phone}}</td>
                         <td class="btn-group">
-                            {{-- <a class="btn btn-primary" href="{{ route('users.show', $user) }}"><i class="fas fa-list-alt"></i></a> --}}
-                            @can('users.edit')
+                            {{-- <a class="btn btn-primary" href="{{ route('admin.users.show', $user) }}"><i class="fas fa-list-alt"></i></a> --}}
+                            @can('admin.users.edit')
                             @if ($user->trashed())
                             @else 
-                                <a class="btn btn-warning" href="{{ route('users.edit', $user) }}"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-warning" href="{{ route('admin.users.edit', $user) }}"><i class="fas fa-edit"></i></a>
                             @endif
                             @endcan
                             @if ($user->trashed())
-                                @can('users.restore')
-                                <a class="btn btn-success" href="{{ route('users.restore', $user->id) }}"><i class="fas fa-redo-alt"></i></a>
+                                @can('admin.users.restore')
+                                <a class="btn btn-success" href="{{ route('admin.users.restore', $user->id) }}"><i class="fas fa-redo-alt"></i></a>
                                 @endcan 
                             @else 
-                                @can('users.destroy')
-                                <form action="{{ route('users.destroy', $user) }}" method="POST" class="formulario-eliminar">
+                                @can('admin.users.destroy')
+                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="formulario-eliminar">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button>

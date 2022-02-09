@@ -33,6 +33,8 @@ class User extends Authenticatable
         'role_id',
         'last_name',
         'office_id',
+        'status',
+        'phone',
     ];
 
     /**

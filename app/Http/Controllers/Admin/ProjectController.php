@@ -11,11 +11,11 @@ class ProjectController extends Controller
     public function __construct()
     {
         #ESTO FUNCIONA PARA EL CONTROLADOR - SE TIENE QUE PONER CASO CONTRARIO ACCEDEN POR LA RUTA
-        $this->middleware('can:projects.index')->only('index');
-        $this->middleware('can:projects.create')->only('create','store');
-        $this->middleware('can:projects.edit')->only('edit','update');
-        $this->middleware('can:projects.destroy')->only('destroy');
-        $this->middleware('can:projects.restore')->only('restore');
+        $this->middleware('can:admin.projects.index')->only('index');
+        $this->middleware('can:admin.projects.create')->only('create','store');
+        $this->middleware('can:admin.projects.edit')->only('edit','update');
+        $this->middleware('can:admin.projects.destroy')->only('destroy');
+        $this->middleware('can:admin.projects.restore')->only('restore');
     }
     public function index(Request $request)
     {
@@ -45,7 +45,7 @@ class ProjectController extends Controller
         $project->description  =$request->description;
         $project->start  =$request->start;
         $project->save();
-        return redirect()->route('projects.index')->with(['estado'=>'success','titulo'=>'Guardado!','texto'=>'Se guardó correctamente']);
+        return redirect()->route('admin.projects.index')->with(['estado'=>'success','titulo'=>'Guardado!','texto'=>'Se guardó correctamente']);
     }
 
    
@@ -68,19 +68,19 @@ class ProjectController extends Controller
             'description'=>'required'
         ]);
         $project->update($request->all());
-        return redirect()->route('projects.index')->with(['estado'=>'warning','titulo'=>'Modificado!','texto'=>'Se modificó correctamente']);
+        return redirect()->route('admin.projects.index')->with(['estado'=>'warning','titulo'=>'Modificado!','texto'=>'Se modificó correctamente']);
     }
 
    
     public function destroy(Project $project)
     {
         $project->delete();
-        return redirect()->route('projects.index')->with(['danger'=>'success','titulo'=>'Eliminado!','texto'=>'Se eliminó correctamente']);
+        return redirect()->route('admin.projects.index')->with(['danger'=>'success','titulo'=>'Eliminado!','texto'=>'Se eliminó correctamente']);
     }
 
     public function restore($id)
     {
         Project::withTrashed()->findOrFail($id)->restore();
-        return redirect()->route('projects.index')->with(['estado'=>'success','titulo'=>'Restaurado!','texto'=>'Se restauró correctamente']);
+        return redirect()->route('admin.projects.index')->with(['estado'=>'success','titulo'=>'Restaurado!','texto'=>'Se restauró correctamente']);
     }
 }

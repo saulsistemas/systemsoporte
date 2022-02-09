@@ -44,9 +44,23 @@
     @enderror
 </div>
 <div class="form-group">
+    <label for="phone">Celular</label>
+    {!! Form::text('phone', null, ['class'=>'form-control','placeholder'=>'Ingrese nombre','onblur'=>'this.value=this.value.toUpperCase();']) !!}
+    @error('phone')
+        <span class="text-danger">{{$message}}</span>
+    @enderror
+</div>
+<div class="form-group">
     <label for="password">Contraseña <em>Ingresar solo si se deseas cambiar</em> </label>
     {!! Form::password('password',  ['class'=>'form-control','placeholder'=>'Ingrese contraseña',]) !!}
     @error('password')
+        <span class="text-danger">{{$message}}</span>
+    @enderror
+</div>
+<div class="form-group">
+    <label for="status">Estado</label>
+    {!! Form::select('status',$status,null,['class'=>'form-control']) !!}
+    @error('status')
         <span class="text-danger">{{$message}}</span>
     @enderror
 </div>

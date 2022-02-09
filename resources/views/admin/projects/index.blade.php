@@ -11,7 +11,7 @@
     <div class="card-header">
         <h3 class="card-title">Listado Proyectos</h3>
         <div class="card-tools">
-            <a href="{{ route('projects.index') }}" class="btn btn-tool" >
+            <a href="{{ route('admin.projects.index') }}" class="btn btn-tool" >
                 <i class="fas fa-sync-alt"></i>
             </a>
             <button type="button" class="btn btn-tool" data-card-widget="maximize">
@@ -33,7 +33,7 @@
             </div>
         @endif
         <div class="d-md-flex justify-content-md-end">
-            <form action="{{ route('projects.index') }}" method="GET">
+            <form action="{{ route('admin.projects.index') }}" method="GET">
                 <div class="btn-group">
                     <input type="text" name="busqueda" class="form-control">
                     <button type="submit" class="btn btn-primary" ><i class="fas fa-search-plus"></i></button>
@@ -41,8 +41,8 @@
             </form>
         </div> 
         <div>
-            @can('projects.create')
-                <a href="{{ route('projects.create') }}" class="btn btn-primary"><i class="fas fa-plus-square"></i></a>
+            @can('admin.projects.create')
+                <a href="{{ route('admin.projects.create') }}" class="btn btn-primary"><i class="fas fa-plus-square"></i></a>
             @endcan
         </div> 
         <table class="table table-striped">
@@ -63,20 +63,20 @@
                         <td>@if(!$project->trashed())<p class="badge bg-success">ACTIVO</p> @else <p class="badge bg-danger">ELIMINADO</p> @endif</td>
                         <td>{{$project->created_at}}</td>
                         <td class="btn-group">
-                            {{-- <a class="btn btn-primary" href="{{ route('projects.show', $project) }}"><i class="fas fa-list-alt"></i></a> --}}
-                            @can('projects.edit')
+                            {{-- <a class="btn btn-primary" href="{{ route('admin.projects.show', $project) }}"><i class="fas fa-list-alt"></i></a> --}}
+                            @can('admin.projects.edit')
                             @if ($project->trashed())
                             @else 
-                                <a class="btn btn-warning" href="{{ route('projects.edit', $project) }}"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-warning" href="{{ route('admin.projects.edit', $project) }}"><i class="fas fa-edit"></i></a>
                             @endif
                             @endcan
                             @if ($project->trashed())
-                                @can('projects.restore')
-                                <a class="btn btn-success" href="{{ route('projects.restore', $project->id) }}"><i class="fas fa-redo-alt"></i></a>
+                                @can('admin.projects.restore')
+                                <a class="btn btn-success" href="{{ route('admin.projects.restore', $project->id) }}"><i class="fas fa-redo-alt"></i></a>
                                 @endcan 
                             @else 
-                                @can('projects.destroy')
-                                <form action="{{ route('projects.destroy', $project) }}" method="POST" class="formulario-eliminar">
+                                @can('admin.projects.destroy')
+                                <form action="{{ route('admin.projects.destroy', $project) }}" method="POST" class="formulario-eliminar">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button>

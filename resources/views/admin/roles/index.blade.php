@@ -11,7 +11,7 @@
     <div class="card-header">
         <h3 class="card-title">Listado Permisos</h3>
         <div class="card-tools">
-            <a href="{{ route('roles.index') }}" class="btn btn-tool" >
+            <a href="{{ route('admin.roles.index') }}" class="btn btn-tool" >
                 <i class="fas fa-sync-alt"></i>
             </a>
             <button type="button" class="btn btn-tool" data-card-widget="maximize">
@@ -33,7 +33,7 @@
             </div>
         @endif
         <div class="d-md-flex justify-content-md-end">
-            <form action="{{ route('roles.index') }}" method="GET">
+            <form action="{{ route('admin.roles.index') }}" method="GET">
                 <div class="btn-group">
                     <input type="text" name="busqueda" class="form-control">
                     <button type="submit" class="btn btn-primary" ><i class="fas fa-search-plus"></i></button>
@@ -41,8 +41,8 @@
             </form>
         </div> 
         <div>
-            @can('roles.create')
-                <a href="{{ route('roles.create') }}" class="btn btn-primary"><i class="fas fa-plus-square"></i></a>
+            @can('admin.roles.create')
+                <a href="{{ route('admin.roles.create') }}" class="btn btn-primary"><i class="fas fa-plus-square"></i></a>
             @endcan
         </div> 
         <table class="table table-striped">
@@ -59,12 +59,12 @@
                         <td>{{$role->name}}</td>
                         <td>{{$role->created_at}}</td>
                         <td class="btn-group">
-                            {{-- <a class="btn btn-primary" href="{{ route('roles.show', $role) }}"><i class="fas fa-list-alt"></i></a> --}}
-                            @can('roles.edit')
-                                <a class="btn btn-warning" href="{{ route('roles.edit', $role) }}"><i class="fas fa-edit"></i></a>
+                            {{-- <a class="btn btn-primary" href="{{ route('admin.roles.show', $role) }}"><i class="fas fa-list-alt"></i></a> --}}
+                            @can('admin.roles.edit')
+                                <a class="btn btn-warning" href="{{ route('admin.roles.edit', $role) }}"><i class="fas fa-edit"></i></a>
                             @endcan
-                            @can('roles.destroy')
-                                <form action="{{ route('roles.destroy', $role) }}" method="POST" class="formulario-eliminar">
+                            @can('admin.roles.destroy')
+                                <form action="{{ route('admin.roles.destroy', $role) }}" method="POST" class="formulario-eliminar">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button>
