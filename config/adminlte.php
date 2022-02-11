@@ -268,6 +268,13 @@ return [
             'can'           => 'admin.projects.index',
         ],
         [
+            'text'          => 'Tickets',
+            'route'         => 'admin.tickets.index',
+            'icon'          => 'fas fa-ticket-alt',
+            'active'        => ['admin/tickets*'],
+            'can'           => 'admin.tickets.index',
+        ],
+        [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [

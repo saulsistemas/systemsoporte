@@ -66,6 +66,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    #relacion 1 a muchos (TIENE MUCHOS TICKETS)
+    public function tickets(){
+        return $this->hasMany(Ticket::class);
+    }
     #relacion 1 a muchos inversa (PERTENECE A UNA OFICINA)
     public function office(){
         return $this->belongsTo(Office::class);

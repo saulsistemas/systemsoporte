@@ -17,9 +17,17 @@ class CreateTicketsTable extends Migration
             $table->id();
 
             $table->string('title');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('severity',1);
             $table->boolean('active')->default(1);
+            
+            $table->date('start')->nullable();#fecha inicio
+            $table->time('start_time')->nullable();
+            $table->date('assigned')->nullable();#fecha asignado
+            $table->time('assigned_time')->nullable();
+            $table->date('end')->nullable();#fecha find
+            $table->time('end_time')->nullable();
+
 
             $table->unsignedBigInteger('subcategory_id')->nullable();
             $table->foreign('subcategory_id')->references('id')->on('subcategories');
