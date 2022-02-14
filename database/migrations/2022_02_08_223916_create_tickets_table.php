@@ -27,7 +27,10 @@ class CreateTicketsTable extends Migration
             $table->time('assigned_time')->nullable();
             $table->date('end')->nullable();#fecha find
             $table->time('end_time')->nullable();
+            $table->longText('solution')->nullable();
 
+            $table->integer('service_id');
+            $table->integer('category_id');
 
             $table->unsignedBigInteger('subcategory_id')->nullable();
             $table->foreign('subcategory_id')->references('id')->on('subcategories');

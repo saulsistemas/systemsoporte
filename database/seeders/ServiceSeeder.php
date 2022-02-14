@@ -25,5 +25,13 @@ class ServiceSeeder extends Seeder
         $service3 = new Service();
         $service3->name ="SOPORTE";
         $service3->save();
+
+        $service4 = new Service();
+        $service4->name ="INSTALACIONES";
+        $service4->save();
+
+        $service5 = new Service();
+        $service5->name ="OTROS";
+        $service5->save();
     }
 }

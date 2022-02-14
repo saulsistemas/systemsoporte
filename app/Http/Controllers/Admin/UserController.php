@@ -43,12 +43,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'code'=>'required|unique:users',
             'name'=>'required',
             'office_id'=>'required',
             'password'=>'required',
             'email'=>'required|email|unique:users',
         ]);
         $user = User::create([
+            'code'=>$request->code,
             'name'=>$request->name,
             'last_name'=>$request->last_name,
             'phone'=>$request->phone,
@@ -78,10 +80,12 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
+            'code'=>'required|unique:users',
             'name'=>'required',
             'office_id'=>'required',
             'role_id'=>'required',
         ]);
+        $user->code = $request->code;
         $user->name = $request->name;
         $user->role_id = $request->role_id;
         $user->last_name = $request->last_name;

@@ -48,6 +48,7 @@
         <table class="table table-striped">
             <thead>
                 <td>ID</td>
+                <td>CÓDIGO</td>
                 <td>EMPRESA</td>
                 <td>SEDE</td>
                 <td>ROL</td>
@@ -63,6 +64,7 @@
                 @foreach ($users as $user)
                     <tr>
                         <td>{{$user->id}}</td>
+                        <td>{{$user->code}}</td>
                         <td>{{$user->office->company->name}}</td>
                         <td>{{$user->office->name}}</td>
                         <td>@if ($user->getRole()){{$user->getRole()->name}} @else @endif</td>

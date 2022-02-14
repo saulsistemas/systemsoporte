@@ -36,9 +36,103 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2-bootstrap-5-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2-bootstrap-5-theme.rtl.min.css') }}">
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script src="{{ asset('vendor/select2/js/select2.full.min.js') }}"></script>   
+    <script>
+        $(document).ready(function() {
+            $('.client_class').select2({theme: "bootstrap-5"});
+            $('.severt_class').select2({theme: "bootstrap-5"});
+            $('#select_service').select2({theme: "bootstrap-5"});
+            $('#select_category').select2({theme: "bootstrap-5"});
+            $('#select_subcategory').select2({theme: "bootstrap-5"});
+            load_select_service();
+            
+            //CLICK EN SERVICIOS
+            $('#select_service').on('change', function (e) {
+                var service_id = $(this).val();
+                var category_id =null;
+                mostrar_service(service_id,category_id);
+            })  
+
+            //CLICK EN CATEGORIA
+            $('#select_category').on('change', function (e) {
+                var category_id = $(this).val();
+                var subcategory_id =null;
+                mostrar_category(category_id,subcategory_id);
+            })   
+
+        });
+
+        function load_select_service(){
+            var service_id = $('#select_service').val();
+            var category_id = $('#category_id').val();
+            mostrar_service(service_id,category_id);
+        }
+        function mostrar_service(service_id,category_id=null){
+            //SI SELECCIONO OTRO ITEM LA ULTMIMA CATEGORIA SE BORRA
+            if(!service_id){
+                $('#select_category').html('<option value="">Seleccione Categoría</option>');
+                $('#select_subcategory').html('<option value="">Seleccione Subcategoría</option>');
+                return;
+            }
+            //SI SELECCIONO OTRO ITEM LA ULTMIMA CATEGORIA SE BORRA
+            $('#select_subcategory').html('<option value="">Seleccione Subcategoría</option>');
+            //ajax
+            if (service_id && category_id) {
+                $.get('/admin/tickets/'+service_id+'/categories',function(data){
+                var html_select = '<option value="">Seleccione Categoría</option>';
+                    for (let i = 0; i < data.length; i++) {
+                        if (data[i].id == category_id) {
+                            html_select += '<option value="'+data[i].id+'" selected>'+data[i].name+'</option>';
+                        }else{
+                            html_select += '<option value="'+data[i].id+'">'+data[i].name+'</option>';
+                        }
+                    }
+                    $('#select_category').html(html_select);
+                    load_select_category();
+                })
+            }else{
+                $.get('/admin/tickets/'+service_id+'/categories',function(data){
+                var html_select = '<option value="">Seleccione Categoría</option>';
+                    for (let i = 0; i < data.length; i++) {
+                        html_select += '<option value="'+data[i].id+'">'+data[i].name+'</option>';
+                    }
+                    $('#select_category').html(html_select);
+                })
+            }
+            
+        }
+
+        function load_select_category(){
+            var category_id = $('#select_category').val();
+            var subcategory_id = $('#subcategory_id').val();
+            mostrar_category(category_id,subcategory_id);
+        }
+
+        function mostrar_category(category_id,subcategory_id=null){
+            //SI SELECCIONO OTRO ITEM LA ULTMIMA CATEGORIA SE BORRA
+            if(!category_id ){
+                    $('#select_subcategory').html('<option value="">Seleccione Subcategoría</option>');
+                    return;
+            }
+            //ajax
+            $.get('/admin/tickets/'+category_id+'/subcategories',function(data){
+                var html_select = '<option value="">Seleccione Subcategoría</option>';
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].id == subcategory_id) {
+                        html_select += '<option value="'+data[i].id+'" selected>'+data[i].name+'</option>';
+                    }else{
+                        html_select += '<option value="'+data[i].id+'">'+data[i].name+'</option>';
+                    }
+                }
+                $('#select_subcategory').html(html_select);
+            })
+            
+        }
+     </script> 
 @stop

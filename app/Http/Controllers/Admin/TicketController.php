@@ -36,8 +36,7 @@ class TicketController extends Controller
         $users = User::where('id','>','1')
         ->latest('id')
         ->get();
-        $services = Service::latest('id')
-        ->get();
+        $services = Service::get();
         $severity = [1=>'BAJA',2=>'MEDIA',3=>'ALTA'];
         return view('admin.tickets.create',compact('users','severity','services'));
     }
@@ -53,11 +52,13 @@ class TicketController extends Controller
         $ticket = new Ticket();
         $ticket->title          =$request->title;
         $ticket->description    =$request->description;
+        $ticket->service_id =$request->service_id;
+        $ticket->category_id =$request->category_id;
         $ticket->subcategory_id =$request->subcategory_id;
         $ticket->client_id      =$request->client_id;
         $ticket->severity       =$request->severity;
         $ticket->start          =$request->start;
-        $ticket->start_time     =date('H:i:s');;
+        $ticket->start_time     =date('H:i:s');
         $ticket->save();
         return redirect()->route('admin.tickets.index')->with(['estado'=>'success','titulo'=>'Guardado!','texto'=>'Se guardó correctamente']);
 
@@ -70,24 +71,41 @@ class TicketController extends Controller
 
     public function edit(Ticket $ticket)
     {
-        //
+        $users = User::where('id','>','1')
+        ->latest('id')
+        ->get();
+        $services = Service::get();
+        $severity = [1=>'BAJA',2=>'MEDIA',3=>'ALTA'];
+        return view('admin.tickets.edit',compact('ticket','users','severity','services'));
     }
 
     public function update(Request $request, Ticket $ticket)
     {
-        //
+       
+        $ticket->title          =$request->title;
+        $ticket->description    =$request->description;
+        $ticket->service_id     =$request->service_id;
+        $ticket->category_id    =$request->category_id;
+        $ticket->subcategory_id =$request->subcategory_id;
+        $ticket->client_id      =$request->client_id;
+        $ticket->severity       =$request->severity;
+        $ticket->start          =$request->start;
+        $ticket->start_time     =date('H:i:s');
+        $ticket->save();
+        return redirect()->route('admin.tickets.index')->with(['estado'=>'warning','titulo'=>'Modificado!','texto'=>'Se modificó correctamente']);
     }
 
     public function destroy(Ticket $ticket)
     {
-        //
+        $ticket->delete();
+        return redirect()->route('admin.tickets.index')->with(['estado'=>'danger','titulo'=>'Eliminado!','texto'=>'Se eliminó correctamente']);
     }
 
     public function categoriesAll($id){
-        return Category::where('service_id',$id)->latest('id')->get();
+        return Category::where('service_id',$id)->get();
     }
 
     public function subcategoriesAll($id){
-        return Subcategory::where('category_id',$id)->latest('id')->get();
+        return Subcategory::where('category_id',$id)->get();
     }
 }

@@ -30,6 +30,13 @@
     @enderror
 </div>
 <div class="form-group">
+    <label for="name">Código</label>
+    {!! Form::text('code', null, ['class'=>'form-control','placeholder'=>'Ingrese código','onblur'=>'this.value=this.value.toUpperCase();']) !!}
+    @error('code')
+        <span class="text-danger">{{$message}}</span>
+    @enderror
+</div>
+<div class="form-group">
     <label for="name">Nombre</label>
     {!! Form::text('name', null, ['class'=>'form-control','placeholder'=>'Ingrese nombre','onblur'=>'this.value=this.value.toUpperCase();']) !!}
     @error('name')
