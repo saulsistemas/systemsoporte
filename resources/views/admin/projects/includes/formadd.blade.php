@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="company_id">Área</label>
+    <label for="company_id">Empresa</label>
     {!! Form::select('company_id',$companies,null,['class'=>'form-control']) !!}
     @error('company_id')
         <span class="text-danger">{{$message}}</span>

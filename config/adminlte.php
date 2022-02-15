@@ -247,6 +247,13 @@ return [
         ],
         ['header' => 'account_settings'],
         [
+            'text'          => 'Áreas',
+            'route'         => 'admin.areas.index',
+            'icon'          => 'fas fa-briefcase ',
+            'active'        => ['admin/areas*'],
+            'can'           => 'admin.areas.index',
+        ],
+        [
             'text'          => 'Usuarios',
             'route'         => 'admin.users.index',
             'icon'          => 'fas fa-fw fa-user',
