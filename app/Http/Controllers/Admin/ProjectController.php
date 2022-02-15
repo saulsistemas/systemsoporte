@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,8 @@ class ProjectController extends Controller
    
     public function create()
     {
-        return view('admin.projects.create');
+        $companies = Company::where('active','=',1)->pluck('name','id');
+        return view('admin.projects.create',compact('companies'));
     }
 
    
@@ -41,6 +43,7 @@ class ProjectController extends Controller
             'description'=>'required'
         ]);
         $project = new Project();
+        $project->company_id  =$request->company_id;
         $project->name  =$request->name;
         $project->description  =$request->description;
         $project->start  =$request->start;
@@ -57,7 +60,8 @@ class ProjectController extends Controller
   
     public function edit(Project $project)
     {
-        return view('admin.projects.edit',compact('project'));
+        $companies = Company::where('active','=',1)->pluck('name','id');
+        return view('admin.projects.edit',compact('project','companies'));
     }
 
    

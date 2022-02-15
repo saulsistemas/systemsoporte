@@ -29,5 +29,10 @@ class CompanySeeder extends Seeder
         $company3->address = 'AV LIMA N 112';
         $company3->save();
 
+        $company3= new Company();
+        $company3->name = 'SOLGAS';
+        $company3->address = 'CARPACCIO N 255';
+        $company3->save();
+
     }
 }

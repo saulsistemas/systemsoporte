@@ -27,6 +27,7 @@
         <!-- /.card-tools -->
     </div>
     <div class="card-body">
+        {{  auth()->user()->office->company->name;}}
         <input type="date" name="fecha" id="fecha" class="form-control" value="">
         
             <canvas id="myChart" ></canvas>

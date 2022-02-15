@@ -29,11 +29,13 @@ class User extends Authenticatable
     protected $fillable = [
         'code',
         'name',
+        'position',
         'email',
         'password',
         'role_id',
         'last_name',
         'office_id',
+        'area_id',
         'status',
         'phone',
     ];
@@ -74,6 +76,10 @@ class User extends Authenticatable
     #relacion 1 a muchos inversa (PERTENECE A UNA OFICINA)
     public function office(){
         return $this->belongsTo(Office::class);
+    }
+     #relacion 1 a muchos inversa (PERTENECE A UNA AREA)
+     public function area(){
+        return $this->belongsTo(Area::class);
     }
     public function getRole(){
         return $role = Role::find($this->role_id);

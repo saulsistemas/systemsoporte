@@ -11,4 +11,8 @@ class Project extends Model
     use HasFactory;
     use SoftDeletes;
     protected $fillable = ['name','description','start'];
+    #relacion 1 a muchos inversa (PERTENECE A UNA EMPRESA)
+    public function company(){
+        return $this->belongsTo(Company::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use App\Models\Company;
 use App\Models\Office;
 use App\Models\User;
@@ -35,9 +36,10 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::where('id','>',1)->pluck('name','id');
+        $areas = Area::pluck('name','id');
         $companies = Company::join("offices","offices.company_id"  , "=",  "companies.id")
             ->get(['offices.id','offices.name as oficina','companies.name as empresa' , ]);
-        return view('admin.users.create',compact('roles','companies'));
+        return view('admin.users.create',compact('roles','companies','areas'));
     }
 
     public function store(Request $request)
@@ -46,18 +48,21 @@ class UserController extends Controller
             'code'=>'required|unique:users',
             'name'=>'required',
             'office_id'=>'required',
+            'area_id'=>'required',
             'password'=>'required',
             'email'=>'required|email|unique:users',
         ]);
         $user = User::create([
             'code'=>$request->code,
             'name'=>$request->name,
+            'position'=>$request->position,
             'last_name'=>$request->last_name,
             'phone'=>$request->phone,
             'password'=>bcrypt($request->password),
             'email'=>$request->email,
             'office_id'=>$request->office_id,
             'role_id'=>$request->role_id,
+            'area_id'=>$request->area_id,
         ]);
         $user->roles()->sync($request->role_id);
         return redirect()->route('admin.users.index')->with(['estado'=>'success','titulo'=>'Guardado!','texto'=>'Se guardó correctamente']);
@@ -71,17 +76,19 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::where('id','>',1)->pluck('name','id');
+        $areas = Area::pluck('name','id');
         $status = [1=>'Activo',2=>'Desactivo'];
         $companies = Company::join("offices","offices.company_id"  , "=",  "companies.id")
             ->get(['offices.id','offices.name as oficina','companies.name as empresa' , ]);
-        return view('admin.users.edit',compact('user','roles','companies','status'));
+        return view('admin.users.edit',compact('user','roles','companies','status','areas'));
     }
     
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'code'=>'required|unique:users',
+            'code'=>'required|unique:users,code,'.$user->id,
             'name'=>'required',
+            'area_id'=>'required',
             'office_id'=>'required',
             'role_id'=>'required',
         ]);
@@ -90,7 +97,9 @@ class UserController extends Controller
         $user->role_id = $request->role_id;
         $user->last_name = $request->last_name;
         $user->office_id = $request->office_id;
+        $user->area_id = $request->area_id;
         $user->phone = $request->phone;
+        $user->position = $request->position;
         $user->status = $request->status;
         $password = $request->password;
         if ($password) {

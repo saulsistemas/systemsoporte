@@ -12,4 +12,8 @@ class Company extends Model
         #relacion 1 a muchos (TIENE MUCHAS OFFICINAS)
         return $this->hasMany(Office::class);
     }
+    public function projects(){
+        #relacion 1 a muchos (TIENE MUCHOS PROYECTOS)
+        return $this->hasMany(Project::class);
+    }
 }

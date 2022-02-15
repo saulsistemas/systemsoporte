@@ -48,9 +48,10 @@
         <table class="table table-striped">
             <thead>
                 <td>ID</td>
+                <td>EMPRESA</td>
                 <td>NOMBRE</td>
                 <td>DESCRIPCIÓN</td>
-                <td>ESTADO</td>
+                <td>REGISTRO</td>
                 <td>CREADO</td>
                 <td>OPCIONES</td>
             </thead>
@@ -58,9 +59,10 @@
                 @foreach ($projects as $project)
                     <tr>
                         <td>{{$project->id}}</td>
+                        <td>{{$project->company->name}}</td>
                         <td>{{$project->name}}</td>
                         <td>{{$project->description}}</td>
-                        <td>@if(!$project->trashed())<p class="badge bg-success">ACTIVO</p> @else <p class="badge bg-danger">ELIMINADO</p> @endif</td>
+                        <td>@if(!$project->trashed())<p class="badge bg-success">REGITRADO</p> @else <p class="badge bg-danger">ELIMINADO</p> @endif</td>
                         <td>{{$project->created_at}}</td>
                         <td class="btn-group">
                             {{-- <a class="btn btn-primary" href="{{ route('admin.projects.show', $project) }}"><i class="fas fa-list-alt"></i></a> --}}

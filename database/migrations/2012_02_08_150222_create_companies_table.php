@@ -14,6 +14,7 @@ class CreateCompaniesTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('image')->nullable();
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

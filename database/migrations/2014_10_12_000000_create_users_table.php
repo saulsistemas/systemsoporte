@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->string('name');
+            $table->string('position')->nullable();
+
             $table->string('last_name')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -30,6 +32,9 @@ return new class extends Migration
 
             $table->unsignedBigInteger('office_id')->nullable();
             $table->foreign('office_id')->references('id')->on('offices');
+
+            $table->unsignedBigInteger('area_id')->nullable();
+            $table->foreign('area_id')->references('id')->on('areas');
 
             $table->softDeletes();
             $table->timestamps();
