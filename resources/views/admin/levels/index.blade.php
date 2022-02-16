@@ -48,6 +48,7 @@
         <table class="table table-striped">
             <thead>
                 <td>ID</td>
+                <td>USUARIO</td>
                 <td>PROYECTO</td>
                 <td>NOMBRE</td>
                 <td>CREADO</td>
@@ -57,6 +58,7 @@
                 @foreach ($levels as $level)
                     <tr>
                         <td>{{$level->id}}</td>
+                        <td>{{$level->user->name.' '.$level->user->last_name}}</td>
                         <td>{{$level->project->name}}</td>
                         <td>{{$level->name}}</td>
                         <td>{{$level->created_at}}</td>

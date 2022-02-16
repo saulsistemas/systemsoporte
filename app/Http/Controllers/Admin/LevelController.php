@@ -32,7 +32,8 @@ class LevelController extends Controller
     public function create()
     {
         $projects = Project::pluck('name','id');
-        return view('admin.levels.create',compact('projects'));
+        $users = User::where('role_id','=',2)->where('status','=',1)->pluck('name','id');
+        return view('admin.levels.create',compact('projects','users'));
     }
     
     public function store(Request $request)
@@ -42,6 +43,7 @@ class LevelController extends Controller
         ]);
         $level = new Level();
         $level->project_id  =$request->project_id;
+        $level->user_id  =$request->user_id;
         $level->name  =$request->name;
         $level->save();
         return redirect()->route('admin.levels.index')->with(['estado'=>'success','titulo'=>'Guardado!','texto'=>'Se guardó correctamente']);
@@ -54,8 +56,9 @@ class LevelController extends Controller
    
     public function edit(Level $level)
     {
+        $users = User::where('role_id','=',2)->where('status','=',1)->pluck('name','id');
         $projects = Project::pluck('name','id');
-        return view('admin.levels.edit',compact('level','projects'));
+        return view('admin.levels.edit',compact('level','projects','users'));
     }
 
     public function update(Request $request, Level $level)
