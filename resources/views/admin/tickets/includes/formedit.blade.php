@@ -56,7 +56,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-2" for="severity">Severidad</label>
+    <label class="col-sm-2" for="severity">Severidad :</label>
     <div class="col-sm-10">
     {!! Form::select('severity',$severity,null,['class'=>'form-control severt_class']) !!}
     @error('severity')
@@ -65,7 +65,16 @@
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-2" for="title">Título</label>
+    <label class="col-sm-2" for="contact_id">Tipo contacto :</label>
+    <div class="col-sm-10">
+    {!! Form::select('contact_id',$contacts,null,['class'=>'form-control severt_class']) !!}
+    @error('contact_id')
+        <span class="text-danger">{{$message}}</span>
+    @enderror
+    </div>
+</div>
+<div class="form-group row">
+    <label class="col-sm-2" for="title">Título :</label>
     <div class="col-sm-10">
     {!! Form::text('title', null, ['class'=>'form-control','placeholder'=>'Ingrese título','onblur'=>'this.value=this.value.toUpperCase();','required'=>TRUE]) !!}
     @error('title')
@@ -74,7 +83,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-2" for="description">Descripción</label>
+    <label class="col-sm-2" for="description">Descripción :</label>
     <div class="col-sm-10">
     {!! Form::textarea('description',null,['class'=>'form-control','placeholder'=>"Ingrese descripción",'rows'=> 2,'onblur'=>'this.value=this.value.toUpperCase();']) !!}
     @error('description')
@@ -83,7 +92,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-2" for="start">Inicio</label>
+    <label class="col-sm-2" for="start">Inicio :</label>
     <div class="col-sm-10">
     {!! Form::date('start', null,['class'=>'form-control','required'=>TRUE]) !!}
     @error('start')

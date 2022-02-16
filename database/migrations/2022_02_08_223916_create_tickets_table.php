@@ -32,11 +32,14 @@ class CreateTicketsTable extends Migration
             $table->integer('service_id');
             $table->integer('category_id');
 
+            $table->unsignedBigInteger('contact_id')->nullable();
+            $table->foreign('contact_id')->references('id')->on('contacts');
+
             $table->unsignedBigInteger('subcategory_id')->nullable();
             $table->foreign('subcategory_id')->references('id')->on('subcategories');
 
-            $table->unsignedBigInteger('project_id')->nullable();
-            $table->foreign('project_id')->references('id')->on('projects');
+            #$table->unsignedBigInteger('project_id')->nullable();
+            #$table->foreign('project_id')->references('id')->on('projects');
 
             $table->unsignedBigInteger('level_id')->nullable();
             $table->foreign('level_id')->references('id')->on('levels');

@@ -36,17 +36,13 @@ class ProjectSeeder extends Seeder
         $project3->company_id = 4;
         $project3->save();
 
+        //LEVEL
         $level1 = new Level();
-        $level1->name = "MESA DE AYUDA N1";
+        $level1->name = "MESA DE AYUDA N1 + N2";
         $level1->project_id = 1;
         $level1->user_id = 2;
         $level1->save();
-
-        $level1 = new Level();
-        $level1->name = "MESA DE AYUDA N2";
-        $level1->project_id = 1;
-        $level1->user_id = 2;
-        $level1->save();
+        
 
         $level2 = new Level();
         $level2->name = "ATENCIÓN POR TÉLEFONO";

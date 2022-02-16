@@ -41,12 +41,17 @@ class LevelController extends Controller
         $request->validate([
             'name'=>'required',
         ]);
-        $level = new Level();
-        $level->project_id  =$request->project_id;
-        $level->user_id  =$request->user_id;
-        $level->name  =$request->name;
-        $level->save();
-        return redirect()->route('admin.levels.index')->with(['estado'=>'success','titulo'=>'Guardado!','texto'=>'Se guardó correctamente']);
+        $project_user =Level::where('project_id',$request->project_id)->where('user_id',$request->user_id)->first();
+        if ($project_user) {
+            return back()->with(['estado'=>'warning','titulo'=>'Notificación!','texto'=>'El usuario ya pertenece a este proyecto, solo puede agregar un usuario por nivel , puede editar u eliminar']);
+        }else{
+            $level = new Level();
+            $level->project_id  =$request->project_id;
+            $level->user_id  =$request->user_id;
+            $level->name  =$request->name;
+            $level->save();
+            return redirect()->route('admin.levels.index')->with(['estado'=>'success','titulo'=>'Guardado!','texto'=>'Se guardó correctamente']);
+        }
     }
  
     public function show(Level $level)
@@ -66,8 +71,13 @@ class LevelController extends Controller
         $request->validate([
             'name'=>'required',
         ]);
-        $level->update($request->all());
-        return redirect()->route('admin.levels.index')->with(['estado'=>'warning','titulo'=>'Modificado!','texto'=>'Se modificó correctamente']);
+        $project_user =Level::where('project_id',$request->project_id)->where('user_id',$request->user_id)->first();
+        if ($project_user) {
+            return back()->with(['estado'=>'warning','titulo'=>'Notificación!','texto'=>'El usuario ya pertenece a este proyecto, solo puede agregar un usuario por nivel , puede editar u eliminar']);
+        }else{
+            $level->update($request->all());
+            return redirect()->route('admin.levels.index')->with(['estado'=>'warning','titulo'=>'Modificado!','texto'=>'Se modificó correctamente']);
+        }
     }
 
     public function destroy(Level $level)

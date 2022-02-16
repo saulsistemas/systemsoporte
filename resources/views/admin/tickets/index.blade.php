@@ -50,7 +50,7 @@
                 <td>NRO</td>
                 <td>FECHA</td>
                 <td>CLIENTE</td>
-                <td>SERVICIO/CATEGORIA/SUBCATEGORIA</td>
+                <td>CATEGORIZACIÓN</td>
                 <td>TITULO</td>
                 <td>ESTADO</td>
                 <td>OPCIONES</td>
@@ -69,7 +69,10 @@
                         <td>{{$ticket->setTitleShort($ticket->title)}}</td>
                         <td>{{$ticket->getIncident()}}</td>
                         <td class="btn-group">
-                            {{-- <a class="btn btn-primary" href="{{ route('admin.tickets.show', $ticket) }}"><i class="fas fa-list-alt"></i></a> --}}
+                            @can('admin.tickets.show')
+                            <a class="btn btn-primary" href="{{ route('admin.tickets.show', $ticket) }}"><i class="fas fa-list-alt"></i></a>
+                            @endcan
+                            
                             @can('admin.tickets.edit')
                                 <a class="btn btn-warning" href="{{ route('admin.tickets.edit', $ticket) }}"><i class="fas fa-edit"></i></a>
                             @endcan

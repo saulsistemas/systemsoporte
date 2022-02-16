@@ -12,6 +12,10 @@ class Ticket extends Model
     public function subcategory(){
         return $this->belongsTo(Subcategory::class);
     }
+    #relacion 1 a muchos inversa (PERTENECE A UN LEVEL)
+    public function level(){
+        return $this->belongsTo(Level::class);
+    }
     #relacion 1 a muchos inversa (PERTENECE A UN USUARIO SOPORTE)
     public function support(){
         return $this->belongsTo(User::class,'support_id');
@@ -26,12 +30,29 @@ class Ticket extends Model
     }
     public function getIncident(){
         if ($this->active ==0) {
-            return 'resuelto';
+            return 'RESUELTO';
         }
         if ($this->support_id) {
-            return "asignado";
+            return "ASIGNADO";
         }
 
-        return 'pendiente';
+        return 'PENDIENTE';
+    }
+    public function getSupport(){
+        #metodo support creado arriba
+        if ($this->support) {
+            return $this->support->name;
+        }
+        return 'SIN ASIGNAR';
+    }
+    public function setSeverity($sevetiry){
+        switch ($sevetiry) {
+            case 0:
+                return 'BAJA';
+            case 1:
+                return 'MEDIA';
+            default:
+                return 'ALTA';
+        }
     }
 }

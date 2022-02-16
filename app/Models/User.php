@@ -74,8 +74,8 @@ class User extends Authenticatable
     public function tickets(){
         return $this->hasMany(Ticket::class);
     }
-     #relacion 1 a muchos (TIENE MUCHOS LEVELS)
-     public function levels(){
+    #relacion 1 a muchos (TIENE MUCHOS LEVELS)
+    public function levels(){
         return $this->hasMany(Level::class);
     }
     #relacion 1 a muchos inversa (PERTENECE A UNA OFICINA)

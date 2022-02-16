@@ -17,4 +17,9 @@ class Level extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    #relacion 1 a muchos (TIENE MUCHOS TICKET)
+    public function tickets(){
+        return $this->hasMany(Ticket::class);
+    }
 }

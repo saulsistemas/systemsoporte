@@ -27,6 +27,11 @@
         <!-- /.card-tools -->
     </div>
     <div class="card-body">
+        @if (session('estado'))
+            <div class="alert alert-{{session('estado')}}">
+                <strong>{{session('texto')}}</strong>
+            </div>
+        @endif
         {!! Form::open(['route'=> 'admin.levels.store','autocomplete'=>'off']) !!}
             @include('admin.levels.includes.form')
             {!! Form::submit('Guardar', ['class'=>'btn btn-success']) !!}

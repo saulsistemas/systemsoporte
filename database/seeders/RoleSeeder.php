@@ -50,6 +50,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'admin.areas.restore','description'=>'Restaurar área'])->syncRoles([$role1]);
 
         Permission::create(['name'=>'admin.tickets.index','description'=>'Ver listado de ticket'])->syncRoles([$role1]);
+        Permission::create(['name'=>'admin.tickets.show','description'=>'Detalle de ticket'])->syncRoles([$role1]);
         Permission::create(['name'=>'admin.tickets.create','description'=>'Crear ticket'])->syncRoles([$role1]);
         Permission::create(['name'=>'admin.tickets.edit','description'=>'Editar ticket'])->syncRoles([$role1]);
         Permission::create(['name'=>'admin.tickets.destroy','description'=>'Eliminar ticket'])->syncRoles([$role1]);

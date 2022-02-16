@@ -18,11 +18,16 @@ Route::resource('roles', RoleController::class)->names('admin.roles');
 Route::resource('projects', ProjectController::class)->names('admin.projects');
 Route::get('projects/{id}/restore', [ProjectController::class,'restore'])->name('admin.projects.restore');
 Route::resource('levels', LevelController::class)->names('admin.levels');
+Route::resource('areas', AreaController::class)->names('admin.areas');
+Route::get('areas/{id}/restore', [AreaController::class,'restore'])->name('admin.areas.restore');
 Route::resource('tickets', TicketController::class)->names('admin.tickets');
 Route::get('tickets/{id}/categories', [TicketController::class,'categoriesAll'])->name('admin.tickets.categoriesAll');
 Route::get('tickets/{id}/subcategories', [TicketController::class,'subcategoriesAll'])->name('admin.tickets.subcategoriesAll');
-Route::resource('areas', AreaController::class)->names('admin.areas');
-Route::get('areas/{id}/restore', [AreaController::class,'restore'])->name('admin.areas.restore');
+
+Route::get('tickets/{ticket}/atender', [TicketController::class,'atender'])->name('admin.tickets.atender');
+Route::put('tickets/{ticket}/resolver', [TicketController::class,'resolver'])->name('admin.tickets.resolver');
+Route::get('tickets/{ticket}/abrir', [TicketController::class,'abrir'])->name('admin.tickets.abrir');
+Route::get('tickets/{ticket}/derivar', [TicketController::class,'derivar'])->name('admin.tickets.derivar');
 
 
 

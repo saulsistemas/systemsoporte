@@ -27,6 +27,11 @@
         <!-- /.card-tools -->
     </div>
     <div class="card-body">
+        @if (session('estado'))
+            <div class="alert alert-{{session('estado')}}">
+                <strong>{{session('texto')}}</strong>
+            </div>
+        @endif
         {!! Form::model($level,['route'=>['admin.levels.update',$level], 'autocomplete'=>'off','method'=>'put']) !!}
             @include('admin.levels.includes.form')
             {!! Form::submit('Editar', ['class'=>'btn btn-success']) !!}
