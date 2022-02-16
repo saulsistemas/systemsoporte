@@ -15,4 +15,8 @@ class Project extends Model
     public function company(){
         return $this->belongsTo(Company::class);
     }
+    public function levels(){
+        #relacion 1 a muchos (TIENE MUCHOS LEVELES)
+        return $this->hasMany(Level::class);
+    }
 }

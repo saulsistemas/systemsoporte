@@ -38,6 +38,11 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'admin.projects.destroy','description'=>'Eliminar proyecto'])->syncRoles([$role1]);
         Permission::create(['name'=>'admin.projects.restore','description'=>'Restaurar proyecto'])->syncRoles([$role1]);
 
+        Permission::create(['name'=>'admin.levels.index','description'=>'Ver listado de level'])->syncRoles([$role1]);
+        Permission::create(['name'=>'admin.levels.create','description'=>'Crear level'])->syncRoles([$role1]);
+        Permission::create(['name'=>'admin.levels.edit','description'=>'Editar level'])->syncRoles([$role1]);
+        Permission::create(['name'=>'admin.levels.destroy','description'=>'Eliminar level'])->syncRoles([$role1]);
+
         Permission::create(['name'=>'admin.areas.index','description'=>'Ver listado de área'])->syncRoles([$role1]);
         Permission::create(['name'=>'admin.areas.create','description'=>'Crear área'])->syncRoles([$role1]);
         Permission::create(['name'=>'admin.areas.edit','description'=>'Editar área'])->syncRoles([$role1]);

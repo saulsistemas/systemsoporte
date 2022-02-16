@@ -275,6 +275,13 @@ return [
             'can'           => 'admin.projects.index',
         ],
         [
+            'text'          => 'Niveles',
+            'route'         => 'admin.levels.index',
+            'icon'          => 'fas fa-tasks',
+            'active'        => ['admin/levels*'],
+            'can'           => 'admin.levels.index',
+        ],
+        [
             'text'          => 'Tickets',
             'route'         => 'admin.tickets.index',
             'icon'          => 'fas fa-ticket-alt',

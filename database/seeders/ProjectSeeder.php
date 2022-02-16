@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Level;
 use App\Models\Project;
 use Illuminate\Database\Seeder;
 
@@ -34,5 +35,25 @@ class ProjectSeeder extends Seeder
         $project3->start =now();
         $project3->company_id = 4;
         $project3->save();
+
+        $level1 = new Level();
+        $level1->name = "MESA DE AYUDA N1";
+        $level1->project_id = 1;
+        $level1->save();
+
+        $level1 = new Level();
+        $level1->name = "MESA DE AYUDA N2";
+        $level1->project_id = 1;
+        $level1->save();
+
+        $level2 = new Level();
+        $level2->name = "ATENCIÓN POR TÉLEFONO";
+        $level2->project_id = 2;
+        $level2->save();
+
+        $level2 = new Level();
+        $level2->name = "ENVÍO DE TÉCNICO";
+        $level2->project_id = 2;
+        $level2->save();
     }
 }
