@@ -40,5 +40,47 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+<script> 
+    $(document).ready(function() { 
+        load_select_company();
+        $('#select_company').on('change', function () {//CLICK EN SERVICIOS
+            var company_id = $(this).val();
+            mostrar_sede(company_id);
+            mostrar_area(company_id);
+        })  
+    });
+    function load_select_company(){
+        var company_id = $('#select_company').val();
+        mostrar_sede(company_id);
+        mostrar_area(company_id);
+    }
+    //OFICINAS
+    function mostrar_sede(company_id){
+        if(!company_id){ //SI SELECCIONO OTRO ITEM LA ULTMIMA CATEGORIA SE BORRA
+            $('#select_office').html('<option value="">Seleccione sede</option>');
+            return;
+        }//ajax
+        $.get('/admin/users/'+company_id+'/offices',function(data){
+            var html_select = '<option value="">Seleccione sede</option>';
+            for (let i = 0; i < data.length; i++) {
+                html_select += '<option value="'+data[i].id+'">'+data[i].name+'</option>';
+            }
+            $('#select_office').html(html_select);
+        })
+    }
+    //AREAS
+    function mostrar_area(company_id){
+        if(!company_id){ //SI SELECCIONO OTRO ITEM LA ULTMIMA CATEGORIA SE BORRA
+            $('#select_area').html('<option value="">Seleccione área</option>');
+            return;
+        }//ajax
+        $.get('/admin/users/'+company_id+'/areas',function(data){
+            var html_select = '<option value="">Seleccione área</option>';
+            for (let i = 0; i < data.length; i++) {
+                html_select += '<option value="'+data[i].id+'">'+data[i].name+'</option>';
+            }
+            $('#select_area').html(html_select);
+        })
+    }
+</script>
 @stop

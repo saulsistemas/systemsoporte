@@ -8,24 +8,32 @@
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-2" for="companies">Empresa/Sede</label>
+    <label class="col-sm-2" for="company_id">Empresa</label>
     <div class="col-sm-10">
-        <select name="office_id" id="office_id" class="form-control">
-            <option value="">Seleccione ..</option>
-            @foreach ($companies as $company)
-                @if ($company->id == $user->office_id)
-                    <option value="{{$company->id}}" selected>{{$company->empresa.' - '.$company->oficina}}</option>
-                @else
-                    <option value="{{$company->id}}" >{{$company->empresa.' - '.$company->oficina}}</option>
-                @endif
-            @endforeach
-        </select>
-        @error('office_id')
+        {!! Form::select('company_id',$companies,null,['class'=>'form-control','id'=>'select_company']) !!}
+        @error('company_id')
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
 </div>
-
+<div class="form-group row">
+    <label class="col-sm-2" for="office_id">Sede :</label>
+    <div class="col-sm-10">
+        <input type="hidden" id="office_id" value="{{$user->office_id}}">
+        <select name="office_id" id="select_office" class="form-control" required>
+            <option value="">Seleccione sede</option>
+        </select>
+    </div>
+</div>
+<div class="form-group row">
+    <label class="col-sm-2" for="area_id">Área :</label>
+    <div class="col-sm-10">
+        <input type="hidden" id="area_id" value="{{$user->area_id}}">
+        <select name="area_id" id="select_area" class="form-control" required>
+            <option value="">Seleccione área</option>
+        </select>
+    </div>
+</div>
 <div class="form-group row">
     <label class="col-sm-2" for="email">Email</label>
     <div class="col-sm-10">
@@ -58,15 +66,6 @@
     <div class="col-sm-10">
         {!! Form::text('last_name', null, ['class'=>'form-control','placeholder'=>'Ingrese Apellido','onblur'=>'this.value=this.value.toUpperCase();']) !!}
         @error('last_name')
-            <span class="text-danger">{{$message}}</span>
-        @enderror
-    </div>
-</div>
-<div class="form-group row">
-    <label class="col-sm-2" for="area_id">Área</label>
-    <div class="col-sm-10">
-        {!! Form::select('area_id',$areas,null,['class'=>'form-control']) !!}
-        @error('area_id')
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>

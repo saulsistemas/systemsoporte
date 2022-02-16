@@ -39,5 +39,30 @@ class AreaSeeder extends Seeder
         $area1->name ='ALMACÉN';
         $area1->company_id =1;
         $area1->save();
+
+        $area2 = new Area();
+        $area2->name ='GERENCIA';
+        $area2->company_id =2;
+        $area2->save();
+
+        $area2 = new Area();
+        $area2->name ='SUBGERENCIA';
+        $area2->company_id =2;
+        $area2->save();
+
+        $area2 = new Area();
+        $area2->name ='SISTEMAS';
+        $area2->company_id =2;
+        $area2->save();
+
+        $area2 = new Area();
+        $area2->name ='LOGISTICA';
+        $area2->company_id =2;
+        $area2->save();
+
+        $area2 = new Area();
+        $area2->name ='ALMACÉN';
+        $area2->company_id =2;
+        $area2->save();
     }
 }
