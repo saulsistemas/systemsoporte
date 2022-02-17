@@ -27,6 +27,12 @@
         <!-- /.card-tools -->
     </div>
     <div class="card-body">
+        @if (session('estado'))
+        <div class="alert alert-{{session('estado')}}">
+            <strong>{{session('titulo')}}</strong>
+            <strong>{{session('texto')}}</strong>
+        </div>
+        @endif
         {!! Form::model($project,['route'=>['admin.projects.update',$project], 'autocomplete'=>'off','method'=>'put']) !!}
             @include('admin.projects.includes.formedit')
             {!! Form::submit('Editar', ['class'=>'btn btn-success']) !!}

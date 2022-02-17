@@ -32,7 +32,7 @@ class LevelController extends Controller
     public function create()
     {
         $projects = Project::pluck('name','id');
-        $users = User::where('role_id','=',2)->where('status','=',1)->pluck('name','id');
+        $users = User::where('role_id','=',3)->where('status','=',1)->pluck('name','id');
         return view('admin.levels.create',compact('projects','users'));
     }
     
@@ -61,7 +61,7 @@ class LevelController extends Controller
    
     public function edit(Level $level)
     {
-        $users = User::where('role_id','=',2)->where('status','=',1)->pluck('name','id');
+        $users = User::where('role_id','=',3)->where('status','=',1)->pluck('name','id');
         $projects = Project::pluck('name','id');
         return view('admin.levels.edit',compact('level','projects','users'));
     }

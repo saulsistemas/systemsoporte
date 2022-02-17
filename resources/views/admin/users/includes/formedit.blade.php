@@ -82,7 +82,7 @@
 <div class="form-group row">
     <label class="col-sm-2" for="phone">Celular</label>
     <div class="col-sm-10">
-        {!! Form::text('phone', null, ['class'=>'form-control','placeholder'=>'Ingrese nombre','onblur'=>'this.value=this.value.toUpperCase();']) !!}
+        {!! Form::text('phone', null, ['class'=>'form-control','placeholder'=>'Ingrese número','onblur'=>'this.value=this.value.toUpperCase();']) !!}
         @error('phone')
             <span class="text-danger">{{$message}}</span>
         @enderror

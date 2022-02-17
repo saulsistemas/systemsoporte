@@ -624,7 +624,7 @@ class SubcategorySeeder extends Seeder
          $subcategoy1->category_id =6;
          $subcategoy1->save();
         
-         #REPARACION
+         #REPARACION -LAPTOP
          $subcategoy1 = new Subcategory();
          $subcategoy1->name ='PANTALLA';
          $subcategoy1->category_id =7;
@@ -675,5 +675,1010 @@ class SubcategorySeeder extends Seeder
          $subcategoy9->category_id =7;
          $subcategoy9->save();
 
+         $subcategoy9 = new Subcategory();
+         $subcategoy9->name ='OTROS';
+         $subcategoy9->category_id =7;
+         $subcategoy9->save();
+
+         
+         #REPARACION -PC
+         $subcategoy1 = new Subcategory();
+         $subcategoy1->name ='FUNTE ALIMENTACIÓN';
+         $subcategoy1->category_id =8;
+         $subcategoy1->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PUERTO USB/CARGADOR/AUDIO';
+         $subcategoy2->category_id =8;
+         $subcategoy2->save();
+
+         $subcategoy5 = new Subcategory();
+         $subcategoy5->name ='PLACA MADRE';
+         $subcategoy5->category_id =8;
+         $subcategoy5->save();
+
+         $subcategoy6 = new Subcategory();
+         $subcategoy6->name ='CARCASA';
+         $subcategoy6->category_id =8;
+         $subcategoy6->save();
+
+         $subcategoy7 = new Subcategory();
+         $subcategoy7->name ='UNIDAD CD';
+         $subcategoy7->category_id =8;
+         $subcategoy7->save();
+
+         $subcategoy8 = new Subcategory();
+         $subcategoy8->name ='VENTILADOR';
+         $subcategoy8->category_id =8;
+         $subcategoy8->save();
+
+         $subcategoy9 = new Subcategory();
+         $subcategoy9->name ='DISCO DURO';
+         $subcategoy9->category_id =8;
+         $subcategoy9->save();
+
+         $subcategoy9 = new Subcategory();
+         $subcategoy9->name ='MEMORIA RAM';
+         $subcategoy9->category_id =8;
+         $subcategoy9->save();
+
+         $subcategoy9 = new Subcategory();
+         $subcategoy9->name ='PROCESADOR';
+         $subcategoy9->category_id =8;
+         $subcategoy9->save();
+
+         $subcategoy9 = new Subcategory();
+         $subcategoy9->name ='OTROS';
+         $subcategoy9->category_id =8;
+         $subcategoy9->save();
+
+         #REPARACION -IMPRESORA
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PUERTO USB/CARGADOR/WIFI';
+         $subcategoy2->category_id =9;
+         $subcategoy2->save();
+
+         $subcategoy5 = new Subcategory();
+         $subcategoy5->name ='PLACA MADRE';
+         $subcategoy5->category_id =9;
+         $subcategoy5->save();
+
+         $subcategoy6 = new Subcategory();
+         $subcategoy6->name ='TINTAS/CARTUCHOS';
+         $subcategoy6->category_id =9;
+         $subcategoy6->save();
+
+         $subcategoy7 = new Subcategory();
+         $subcategoy7->name ='ESPONJAS';
+         $subcategoy7->category_id =9;
+         $subcategoy7->save();
+
+         $subcategoy8 = new Subcategory();
+         $subcategoy8->name ='SCANER';
+         $subcategoy8->category_id =9;
+         $subcategoy8->save();
+
+         $subcategoy9 = new Subcategory();
+         $subcategoy9->name ='CABEZAL';
+         $subcategoy9->category_id =9;
+         $subcategoy9->save();
+
+         $subcategoy9 = new Subcategory();
+         $subcategoy9->name ='RODILLOS';
+         $subcategoy9->category_id =9;
+         $subcategoy9->save();
+
+         $subcategoy9 = new Subcategory();
+         $subcategoy9->name ='CARCASA';
+         $subcategoy9->category_id =9;
+         $subcategoy9->save();
+
+         $subcategoy9 = new Subcategory();
+         $subcategoy9->name ='OTROS';
+         $subcategoy9->category_id =9;
+         $subcategoy9->save();
+
+         #REPARACION -SCCNER
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PUERTO USB/CARGADOR/WIFI';
+         $subcategoy2->category_id =10;
+         $subcategoy2->save();
+
+         $subcategoy5 = new Subcategory();
+         $subcategoy5->name ='CRISTAL';
+         $subcategoy5->category_id =10;
+         $subcategoy5->save();
+
+         $subcategoy5 = new Subcategory();
+         $subcategoy5->name ='CARCASA';
+         $subcategoy5->category_id =10;
+         $subcategoy5->save();
+
+         $subcategoy5 = new Subcategory();
+         $subcategoy5->name ='OTRO';
+         $subcategoy5->category_id =10;
+         $subcategoy5->save();
+
+         #REPARACION -TV
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PUERTO USB/CARGADOR/WIFI';
+         $subcategoy2->category_id =11;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PANTALLA';
+         $subcategoy2->category_id =11;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='AUDIO';
+         $subcategoy2->category_id =11;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =11;
+         $subcategoy2->save();
+
+         #REPARACION -CELULAR
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PUERTO USB/CARGADOR/WIFI';
+         $subcategoy2->category_id =12;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PANTALLA';
+         $subcategoy2->category_id =12;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='AUDIO/MICROFONO';
+         $subcategoy2->category_id =12;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='BATERIA';
+         $subcategoy2->category_id =12;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='CARCASA';
+         $subcategoy2->category_id =12;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='SOFTWARE';
+         $subcategoy2->category_id =12;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =12;
+         $subcategoy2->save();
+
+         #REPARACION -MONITOR
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PUERTO USB/CARGADOR/WIFI';
+         $subcategoy2->category_id =13;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PANTALLA';
+         $subcategoy2->category_id =13;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='AUDIO';
+         $subcategoy2->category_id =13;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =13;
+         $subcategoy2->save();
+
+         #REPARACION -TECLADO
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='CABLE USB';
+         $subcategoy2->category_id =14;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='TECLA';
+         $subcategoy2->category_id =14;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='CARCASA';
+         $subcategoy2->category_id =14;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='TOKEN USB';
+         $subcategoy2->category_id =14;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =14;
+         $subcategoy2->save();
+
+         #REPARACION -MOUSE
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='CABLE USB';
+         $subcategoy2->category_id =15;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='RUEDA';
+         $subcategoy2->category_id =15;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='CLICK';
+         $subcategoy2->category_id =15;
+         $subcategoy2->save();
+         
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='TOKEN USB';
+         $subcategoy2->category_id =15;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =15;
+         $subcategoy2->save();
+
+         #REPARACION -TABLET
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PUERTO USB/CARGADOR/WIFI';
+         $subcategoy2->category_id =16;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PANTALLA';
+         $subcategoy2->category_id =16;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='AUDIO/MICROFONO';
+         $subcategoy2->category_id =16;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='BATERIA';
+         $subcategoy2->category_id =16;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='CARCASA';
+         $subcategoy2->category_id =16;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='SOFTWARE';
+         $subcategoy2->category_id =16;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROSs';
+         $subcategoy2->category_id =16;
+         $subcategoy2->save();
+
+         #REPARACION -PARLANTE
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PUERTO USB/CARGADOR';
+         $subcategoy2->category_id =17;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='CARCASA';
+         $subcategoy2->category_id =17;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =17;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =18;
+         $subcategoy2->save();
+
+         #SOPORTE -LAPTOP
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='FORMATEO';
+         $subcategoy2->category_id =19;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ELIMINACION TEMPORALES';
+         $subcategoy2->category_id =19;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='DESISTALACION PROGRAMAS';
+         $subcategoy2->category_id =19;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='RECUPERACION DE INFORMACION';
+         $subcategoy2->category_id =19;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='TRASLADO DE INFORMACION';
+         $subcategoy2->category_id =19;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION DRIVER';
+         $subcategoy2->category_id =19;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION DRIVER';
+         $subcategoy2->category_id =19;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION DRIVER';
+         $subcategoy2->category_id =19;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='DESISTALACION DRIVER';
+         $subcategoy2->category_id =19;
+         $subcategoy2->save();
+
+         #SOPORTE -PC
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='FORMATEO';
+         $subcategoy2->category_id =20;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ELIMINACION TEMPORALES';
+         $subcategoy2->category_id =20;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='DESISTALACION PROGRAMAS';
+         $subcategoy2->category_id =20;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='RECUPERACION DE INFORMACION';
+         $subcategoy2->category_id =20;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='TRASLADO DE INFORMACION';
+         $subcategoy2->category_id =20;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION DRIVER';
+         $subcategoy2->category_id =20;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION DRIVER';
+         $subcategoy2->category_id =20;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION DRIVER';
+         $subcategoy2->category_id =20;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='DESISTALACION DRIVER';
+         $subcategoy2->category_id =20;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =20;
+         $subcategoy2->save();
+    
+         #SOPORTE -CELULAR
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='RESTAURACION';
+         $subcategoy2->category_id =21;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ELIMINACION TEMPORALES';
+         $subcategoy2->category_id =21;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='DESISTALACION APP';
+         $subcategoy2->category_id =21;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='RECUPERACION DE INFORMACION';
+         $subcategoy2->category_id =21;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='TRASLADO DE INFORMACION';
+         $subcategoy2->category_id =21;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION APP';
+         $subcategoy2->category_id =21;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION APP';
+         $subcategoy2->category_id =21;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTRO';
+         $subcategoy2->category_id =21;
+         $subcategoy2->save();
+
+         #SOPORTE -IMPRESORA
+       
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION DRIVER';
+         $subcategoy2->category_id =22;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION DRIVER';
+         $subcategoy2->category_id =22;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION DRIVER';
+         $subcategoy2->category_id =22;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='DESISTALACION DRIVER';
+         $subcategoy2->category_id =22;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='CAMBIO TINTA/TONNER';
+         $subcategoy2->category_id =22;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =22;
+         $subcategoy2->save();
+         
+         #SOPORTE - OFFICE
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =23;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTIVACION';
+         $subcategoy2->category_id =23;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =23;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =23;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ELIMINACION';
+         $subcategoy2->category_id =23;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =23;
+         $subcategoy2->save();
+
+         #SOPORTE - SISTEMA OPERATIVO
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =24;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTIVACION';
+         $subcategoy2->category_id =24;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =24;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =24;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='RESTAURACION';
+         $subcategoy2->category_id =24;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =24;
+         $subcategoy2->save();
+
+         //SOPORTE - WORD
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =25;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =25;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =25;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PROBLEMAS /LENTITUD/COMPATIBILIDAD';
+         $subcategoy2->category_id =25;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =25;
+         $subcategoy2->save();
+
+         //SOPORTE - EXCEL
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =26;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =26;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =26;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PROBLEMAS /LENTITUD/COMPATIBILIDAD';
+         $subcategoy2->category_id =26;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =26;
+         $subcategoy2->save();
+
+         //SOPORTE - OUTLOOK
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='CONFIGURACION CUENTA';
+         $subcategoy2->category_id =27;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =27;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =27;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =27;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PROBLEMAS /LENTITUD/COMPATIBILIDAD';
+         $subcategoy2->category_id =27;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =27;
+         $subcategoy2->save();
+
+         //SOPORTE - VICIO
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTIVACION';
+         $subcategoy2->category_id =28;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =28;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =28;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =28;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PROBLEMAS /LENTITUD/COMPATIBILIDAD';
+         $subcategoy2->category_id =28;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =28;
+         $subcategoy2->save();
+
+         //SOPORTE - PROJECT
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTIVACION';
+         $subcategoy2->category_id =29;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =29;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =29;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =29;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PROBLEMAS /LENTITUD/COMPATIBILIDAD';
+         $subcategoy2->category_id =29;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =29;
+         $subcategoy2->save();
+
+         //SOPORTE - ONEDRIVE
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='CONFIGURACION CUENTA';
+         $subcategoy2->category_id =30;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =30;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =30;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =30;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PROBLEMAS /LENTITUD/COMPATIBILIDAD';
+         $subcategoy2->category_id =30;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =30;
+         $subcategoy2->save();
+
+         //SOPORTE - TEAMS
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='CONFIGURACION CUENTA';
+         $subcategoy2->category_id =31;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =31;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =31;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =31;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PROBLEMAS /LENTITUD/COMPATIBILIDAD';
+         $subcategoy2->category_id =31;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =31;
+         $subcategoy2->save();
+
+         //SOPORTE - ANTIVIRUS
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTIVACION';
+         $subcategoy2->category_id =32;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =32;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =32;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =32;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PROBLEMAS /LENTITUD/COMPATIBILIDAD';
+         $subcategoy2->category_id =32;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =32;
+         $subcategoy2->save();
+
+         //SOPORTE - AUTOCAD
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTIVACION';
+         $subcategoy2->category_id =33;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =33;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =33;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =33;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PROBLEMAS /LENTITUD/COMPATIBILIDAD';
+         $subcategoy2->category_id =33;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =33;
+         $subcategoy2->save();
+
+         //SOPORTE - ANYDESK
+        
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =34;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =34;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =34;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PROBLEMAS /LENTITUD/COMPATIBILIDAD';
+         $subcategoy2->category_id =34;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =34;
+         $subcategoy2->save();
+
+         //SOPORTE - NAVEGADOR
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =35;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =35;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =35;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PROBLEMAS /LENTITUD/COMPATIBILIDAD';
+         $subcategoy2->category_id =35;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =35;
+         $subcategoy2->save();
+
+          //SOPORTE - DRIVE
+          $subcategoy2 = new Subcategory();
+          $subcategoy2->name ='CONFIGURACION CUENTA';
+          $subcategoy2->category_id =36;
+          $subcategoy2->save();
+ 
+          $subcategoy2 = new Subcategory();
+          $subcategoy2->name ='INSTALACION';
+          $subcategoy2->category_id =36;
+          $subcategoy2->save();
+ 
+          $subcategoy2 = new Subcategory();
+          $subcategoy2->name ='REPARACION';
+          $subcategoy2->category_id =36;
+          $subcategoy2->save();
+ 
+          $subcategoy2 = new Subcategory();
+          $subcategoy2->name ='ACTUALIZACION';
+          $subcategoy2->category_id =36;
+          $subcategoy2->save();
+ 
+          $subcategoy2 = new Subcategory();
+          $subcategoy2->name ='PROBLEMAS /LENTITUD/COMPATIBILIDAD';
+          $subcategoy2->category_id =36;
+          $subcategoy2->save();
+ 
+          $subcategoy2 = new Subcategory();
+          $subcategoy2->name ='OTROS';
+          $subcategoy2->category_id =36;
+          $subcategoy2->save();
+
+          //SOPORTE - PDF
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =37;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =37;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =37;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PROBLEMAS /LENTITUD/COMPATIBILIDAD';
+         $subcategoy2->category_id =37;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =37;
+         $subcategoy2->save();
+
+         //SOPORTE - ZOOM
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='CONFIGURACION CUENTA';
+         $subcategoy2->category_id =38;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='INSTALACION';
+         $subcategoy2->category_id =38;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='REPARACION';
+         $subcategoy2->category_id =38;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ACTUALIZACION';
+         $subcategoy2->category_id =38;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='PROBLEMAS /LENTITUD/COMPATIBILIDAD';
+         $subcategoy2->category_id =38;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =38;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =39;
+         $subcategoy2->save();
+
+         #MANTENIMIENTO LOGICO
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ELIMINACION TEMPORALES';
+         $subcategoy2->category_id =40;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='DESISTALACION PROGRAMAS';
+         $subcategoy2->category_id =40;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='RECUPERACION DE INFORMACION';
+         $subcategoy2->category_id =40;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='TRASLADO DE INFORMACION';
+         $subcategoy2->category_id =40;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =40;
+         $subcategoy2->save();
+
+         #MANTENIMIENTO FISICO
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='ENSAMBLAJE DE PARTES';
+         $subcategoy2->category_id =41;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='CAMBIO DE PARTES';
+         $subcategoy2->category_id =41;
+         $subcategoy2->save();
+
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='LIMPIEZA DE PARTES(CPU-RAM-PLACA-FUENTE / OTROS)';
+         $subcategoy2->category_id =41;
+         $subcategoy2->save();
+
+         
+         $subcategoy2 = new Subcategory();
+         $subcategoy2->name ='OTROS';
+         $subcategoy2->category_id =41;
+         $subcategoy2->save();
     }
 }

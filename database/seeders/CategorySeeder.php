@@ -109,18 +109,119 @@ class CategorySeeder extends Seeder
 
         #SOPORTE
         $category19 = new Category();
-        $category19->name ='OFFICE';
+        $category19->name ='LAPTOP';
+        $category19->service_id =3;
+        $category19->save();
+
+        $category19 = new Category();
+        $category19->name ='PC';
+        $category19->service_id =3;
+        $category19->save();
+
+        $category19 = new Category();
+        $category19->name ='CELULAR';
+        $category19->service_id =3;
+        $category19->save();
+
+        $category19 = new Category();
+        $category19->name ='IMPRESORA';
+        $category19->service_id =3;
+        $category19->save();
+
+        $category19 = new Category();
+        $category19->name ='PAQUETE OFFICE';
         $category19->service_id =3;
         $category19->save();
 
         $category20 = new Category();
-        $category20->name ='WINDOWS';
+        $category20->name ='SISTEMA OPERTATIVO WINDOWS/LINUX/OTRO';
         $category20->service_id =3;
         $category20->save();
 
         $category21 = new Category();
+        $category21->name ='WORD';
+        $category21->service_id =3;
+        $category21->save();
+
+        $category21 = new Category();
+        $category21->name ='EXCEL';
+        $category21->service_id =3;
+        $category21->save();
+
+        $category21 = new Category();
+        $category21->name ='OUTLOOK';
+        $category21->service_id =3;
+        $category21->save();
+
+        $category21 = new Category();
+        $category21->name ='PROJECT';
+        $category21->service_id =3;
+        $category21->save();
+
+        $category21 = new Category();
+        $category21->name ='VISIO';
+        $category21->service_id =3;
+        $category21->save();
+
+        $category21 = new Category();
+        $category21->name ='ONEDRIVE';
+        $category21->service_id =3;
+        $category21->save();
+
+        $category21 = new Category();
+        $category21->name ='TEAMS';
+        $category21->service_id =3;
+        $category21->save();
+
+        $category21 = new Category();
+        $category21->name ='ANTIVIRUS';
+        $category21->service_id =3;
+        $category21->save();
+
+        $category21 = new Category();
+        $category21->name ='AUTOCAD';
+        $category21->service_id =3;
+        $category21->save();
+
+        $category21 = new Category();
         $category21->name ='ANYDESK';
         $category21->service_id =3;
+        $category21->save();
+
+        $category21 = new Category();
+        $category21->name ='NAVEGADOR /CHROME/FIREFOX/ OTROS';
+        $category21->service_id =3;
+        $category21->save();
+
+        $category21 = new Category();
+        $category21->name ='DRIVE';
+        $category21->service_id =3;
+        $category21->save();
+
+        $category21 = new Category();
+        $category21->name ='PDF';
+        $category21->service_id =3;
+        $category21->save();
+
+        $category21 = new Category();
+        $category21->name ='ZOOM/WEBEX/OTROS';
+        $category21->service_id =3;
+        $category21->save();
+
+        $category21 = new Category();
+        $category21->name ='OTROS';
+        $category21->service_id =3;
+        $category21->save();
+
+        //CAMBIO
+        $category21 = new Category();
+        $category21->name ='LOGICO';
+        $category21->service_id =4;
+        $category21->save();
+
+        $category21 = new Category();
+        $category21->name ='FISICO';
+        $category21->service_id =4;
         $category21->save();
     }
 }

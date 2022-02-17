@@ -64,8 +64,11 @@ class TicketController extends Controller
         //PARA EL USUARIO SOPORTE
         $user = auth()->user();
         $level_id= Level::where('user_id',$user->id)->first();
-        
-        $ticket->level_id       =$level_id->id;
+        if ($level_id) {
+            $ticket->level_id       =$level_id->id;
+        }else{
+            return redirect()->route('admin.tickets.index')->with(['estado'=>'warning','titulo'=>'error!','texto'=>'No tiene asignado nivel en proyecto']);
+        }
         $ticket->contact_id     =$request->contact_id;
         $ticket->severity       =$request->severity;
         $ticket->start          =$request->start;
@@ -126,11 +129,15 @@ class TicketController extends Controller
     {
         #validar de usuario de soporte;
         #poner validaciones video 27
+        $company_id = $ticket->client->company_id;
+        $project_id =Project::where('company_id',$company_id)->first()->id;
+        $level_id= Level::where('user_id',auth()->user()->id)->where('project_id',$project_id )->first()->id;
+        $ticket->level_id = $level_id;
         $ticket->support_id = auth()->user()->id;
         $ticket->assigned   = date('Y-m-d');
         $ticket->assigned_time   = date('H:i:s');
         $ticket->save();
-        return back();
+        return back()->with(['estado'=>'success','titulo'=>'Correcto!','texto'=>'Se te asignó incidencia']);
     }
     public function resolver(Request $request, Ticket $ticket)
     {
@@ -140,5 +147,48 @@ class TicketController extends Controller
         $ticket->active   = 0;
         $ticket->save();
         return redirect()->route('admin.tickets.index')->with(['estado'=>'success','titulo'=>'Concluido!','texto'=>'Se finalizó atención correctamente']);
+    }
+
+    public function derivar(Ticket $ticket)
+    {
+        #siempre tiene que traer al level principal porque de ahi comienza todo
+        $level_id= $ticket->level_id;
+
+        $company_id = $ticket->client->company_id;
+        $project = Project::where('company_id',$company_id)->first();#OBTENER TODO LOS PRYECTOS SEGUN EMPRESA DEL USUARIO
+        $levels = $project->levels;#TODO LOS LEVELES
+
+        ##Busca el nivel actual y le paso todo los leveles
+        $next_level_id = $this->getNextLevelId($level_id,$levels);
+        #si existe otro nivel lo guardamos
+        if ($next_level_id) {
+            $ticket->level_id = $next_level_id;
+            $ticket->support_id = null;
+            $ticket->save();
+            return redirect()->route('admin.tickets.index')->with(['estado'=>'success','titulo'=>'Derivado!','texto'=>'Se derivó atención correctamente']);
+        }
+        return back()->with('notificacion','no es posible porque no hay siguiente nivel');
+    }
+    public function getNextLevelId($level_id,$levels){
+        $tamanio_levels =sizeof($levels);
+        if (sizeof($levels)<=1) {
+            return null;
+        }
+        $position=null;
+        for ($i=0; $i < $tamanio_levels; $i++) { 
+            if ($levels[$i]->id ==$level_id) {
+                $position=$i;#Guarda la vuelta u posicion
+                break;
+            }
+        }
+        if ($position == -1) {
+            return null;
+        }
+        #1 =3-1=2
+        if ($position == $tamanio_levels -1) {
+            return null;
+        }
+        #dd($levels[$i+1]);#ingreso al array con la posicion encontrada y lo envio
+        return $levels[$position+1]->id;
     }
 }

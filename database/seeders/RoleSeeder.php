@@ -15,11 +15,12 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $role1=Role::create(['name'=>'Admin']);
-        $role2=Role::create(['name'=>'Soporte']);
-        $role3=Role::create(['name'=>'Cliente']);
+        $role1=Role::create(['name'=>'SUPERADMIN']);
+        $role2=Role::create(['name'=>'ADMIN']);
+        $role3=Role::create(['name'=>'SOPORTE']);
+        $role4=Role::create(['name'=>'CLIENTE']);
 
-        Permission::create(['name'=>'admin.home','description'=>'Ver el Dashboard'])->syncRoles([$role1,$role2,$role3]);
+        Permission::create(['name'=>'admin.home','description'=>'Ver el Dashboard'])->syncRoles([$role1,$role2,$role3,$role4]);
 
         Permission::create(['name'=>'admin.users.index','description'=>'Ver listado de usuarios'])->syncRoles([$role1]);
         Permission::create(['name'=>'admin.users.create','description'=>'Crear usuario'])->syncRoles([$role1]);
@@ -49,12 +50,12 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'admin.areas.destroy','description'=>'Eliminar área'])->syncRoles([$role1]);
         Permission::create(['name'=>'admin.areas.restore','description'=>'Restaurar área'])->syncRoles([$role1]);
 
-        Permission::create(['name'=>'admin.tickets.index','description'=>'Ver listado de ticket'])->syncRoles([$role1]);
-        Permission::create(['name'=>'admin.tickets.show','description'=>'Detalle de ticket'])->syncRoles([$role1]);
-        Permission::create(['name'=>'admin.tickets.create','description'=>'Crear ticket'])->syncRoles([$role1]);
-        Permission::create(['name'=>'admin.tickets.edit','description'=>'Editar ticket'])->syncRoles([$role1]);
-        Permission::create(['name'=>'admin.tickets.destroy','description'=>'Eliminar ticket'])->syncRoles([$role1]);
-        Permission::create(['name'=>'admin.tickets.restore','description'=>'Restaurar ticket'])->syncRoles([$role1]);
+        Permission::create(['name'=>'admin.tickets.index','description'=>'Ver listado de ticket'])->syncRoles([$role1,$role2,$role3]);
+        Permission::create(['name'=>'admin.tickets.show','description'=>'Detalle de ticket'])->syncRoles([$role1,$role2,$role3]);
+        Permission::create(['name'=>'admin.tickets.create','description'=>'Crear ticket'])->syncRoles([$role1,$role2,$role3]);
+        Permission::create(['name'=>'admin.tickets.edit','description'=>'Editar ticket'])->syncRoles([$role1,$role2,$role3]);
+        Permission::create(['name'=>'admin.tickets.destroy','description'=>'Eliminar ticket'])->syncRoles([$role1,$role2,$role3]);
+        Permission::create(['name'=>'admin.tickets.restore','description'=>'Restaurar ticket'])->syncRoles([$role1,$role2,$role3]);
 
     }
 }

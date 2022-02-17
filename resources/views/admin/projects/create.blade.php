@@ -27,6 +27,12 @@
         <!-- /.card-tools -->
     </div>
     <div class="card-body">
+        @if (session('estado'))
+        <div class="alert alert-{{session('estado')}}">
+            <strong>{{session('titulo')}}</strong>
+            <strong>{{session('texto')}}</strong>
+        </div>
+        @endif
         {!! Form::open(['route'=> 'admin.projects.store','autocomplete'=>'off']) !!}
             @include('admin.projects.includes.formadd')
             {!! Form::submit('Guardar', ['class'=>'btn btn-success']) !!}

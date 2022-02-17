@@ -13,6 +13,12 @@
     </div>
     <div class="card-body">
         <div class="card-body">
+            @if (session('estado'))
+            <div class="alert alert-{{session('estado')}}">
+                <strong>{{session('titulo')}}</strong>
+                <strong>{{session('texto')}}</strong>
+            </div>
+            @endif
             <p class="card-text">
                 <table class="table table-hover table-bordered">
                     <thead>
@@ -80,6 +86,10 @@
                     @can('admin.tickets.edit')
                         <a class="btn btn-warning btn-sm" href="{{ route('admin.tickets.edit', $ticket) }}">Editar Incidencia</a>
                     @endcan
+                    @if ($ticket->support)
+                    <a href="{{ route('admin.tickets.derivar', $ticket) }}" class="btn btn-danger btn-sm">Derivar al siguiente nivel</a>
+                    @else
+                    @endif
               </p>
           </div>
            

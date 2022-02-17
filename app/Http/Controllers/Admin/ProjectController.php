@@ -42,13 +42,18 @@ class ProjectController extends Controller
             'name'=>'required',
             'description'=>'required'
         ]);
-        $project = new Project();
-        $project->company_id  =$request->company_id;
-        $project->name  =$request->name;
-        $project->description  =$request->description;
-        $project->start  =$request->start;
-        $project->save();
-        return redirect()->route('admin.projects.index')->with(['estado'=>'success','titulo'=>'Guardado!','texto'=>'Se guardó correctamente']);
+        $project_user =Project::where('company_id',$request->company_id)->first();
+        if ($project_user) {
+            return back()->with(['estado'=>'warning','titulo'=>'Notificación!','texto'=>'La empresa ya pertenece a este proyecto, solo puede agregar una empresa por proyecto , puede editar u eliminar']);
+        }else{
+            $project = new Project();
+            $project->company_id  =$request->company_id;
+            $project->name  =$request->name;
+            $project->description  =$request->description;
+            $project->start  =$request->start;
+            $project->save();
+            return redirect()->route('admin.projects.index')->with(['estado'=>'success','titulo'=>'Guardado!','texto'=>'Se guardó correctamente']);
+        }
     }
 
    
@@ -71,8 +76,21 @@ class ProjectController extends Controller
             'name'=>'required',
             'description'=>'required'
         ]);
-        $project->update($request->all());
-        return redirect()->route('admin.projects.index')->with(['estado'=>'warning','titulo'=>'Modificado!','texto'=>'Se modificó correctamente']);
+        if ($request->name != $project->name ||$request->description != $project->description||$request->start != $project->start ) {
+            $project->update($request->all());
+            return redirect()->route('admin.projects.index')->with(['estado'=>'warning','titulo'=>'Modificado!','texto'=>'Se modificó correctamente']);
+            
+        }else{
+            #si id por formulario = id base de datos
+            $project_user =Project::where('company_id',$request->company_id)->first();
+            if ($project_user) {
+                return back()->with(['estado'=>'warning','titulo'=>'Notificación!','texto'=>'La empresa ya pertenece a este proyecto, solo puede agregar una empresa por proyecto , puede editar u eliminar']);
+            }else{
+                $project->update($request->all());
+                return redirect()->route('admin.projects.index')->with(['estado'=>'warning','titulo'=>'Modificado!','texto'=>'Se modificó correctamente']);
+            }
+        }
+       
     }
 
    
