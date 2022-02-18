@@ -36,7 +36,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::where('id','>',1)->pluck('name','id');
-        $companies = Company::pluck('name','id');
+        $companies = Company::where('active','>',0)->pluck('name','id');
         #$companies = Company::all();
         return view('admin.users.create',compact('roles','companies'));
     }
@@ -78,7 +78,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::where('id','>',1)->pluck('name','id');
-        $companies = Company::pluck('name','id');
+        $companies = Company::where('active','>',0)->pluck('name','id');
         $status = [1=>'Activo',2=>'Desactivo'];
         return view('admin.users.edit',compact('user','roles','companies','status'));
     }

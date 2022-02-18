@@ -141,7 +141,8 @@ class TicketController extends Controller
     }
     public function resolver(Request $request, Ticket $ticket)
     {
-        $ticket->end   = date('Y-m-d');
+        
+        $ticket->end   = $request->end;
         $ticket->end_time   = date('H:i:s');
         $ticket->solution   = $request->solution;
         $ticket->active   = 0;

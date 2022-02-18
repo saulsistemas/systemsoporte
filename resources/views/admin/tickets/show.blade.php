@@ -60,23 +60,31 @@
                         <th>DESCRIPCIÓN</th>
                         <td>{{$ticket->description}}</td>
                     </tr>
+                    @if ($ticket->support)
+                    {!! Form::model($ticket,['route'=>['admin.tickets.resolver',$ticket], 'autocomplete'=>'off','method'=>'put']) !!}
                     <tr>
-                        @if ($ticket->support)
-                            <th>SOLUCIÓN</th>
-                            <td>
-                                    {!! Form::model($ticket,['route'=>['admin.tickets.resolver',$ticket], 'autocomplete'=>'off','method'=>'put']) !!}
-                                        {!! Form::textarea('solution',null,['class'=>'form-control','placeholder'=>"Ingrese descripción",'rows'=> 4,'onblur'=>'this.value=this.value.toUpperCase();']) !!}
-                                        @error('solution')
-                                            <span class="text-danger">{{$message}}</span>
-                                        @enderror
-                                        <br>
-                                        {!! Form::submit('Finalizar incidencia', ['class'=>'btn btn-success btn-sm']) !!}
-                                    {!! Form::close() !!}
-                                
-                            </td>
-                        @else
-                        @endif
+                        <th>FECHA SOLUCIÓN</th>
+                        <td>
+                            {!! Form::date('end', \Carbon\Carbon::now(),['class'=>'form-control','required'=>TRUE]) !!}
+                            @error('end')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </td>
                     </tr>
+                    <tr>
+                        <th>DETALLE SOLUCIÓN</th>
+                        <td>
+                            {!! Form::textarea('solution',null,['class'=>'form-control','placeholder'=>"Ingrese descripción",'rows'=> 4,'onblur'=>'this.value=this.value.toUpperCase();','required'=>TRUE]) !!}
+                            @error('solution')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                            <br>
+                            {!! Form::submit('Finalizar incidencia', ['class'=>'btn btn-success btn-sm']) !!}
+                        </td>
+                    </tr>
+                    {!! Form::close() !!}
+                    @else
+                    @endif
                 </table>
                 <hr>
                     @if ($ticket->support)
