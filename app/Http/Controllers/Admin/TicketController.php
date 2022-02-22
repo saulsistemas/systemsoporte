@@ -27,12 +27,27 @@ class TicketController extends Controller
     }
     public function index(Request $request)
     {
+        $user=auth()->user();
         $busqueda = $request->busqueda;
         $tickets=Ticket::where('title','LIKE','%'.$busqueda.'%')
         ->where('active','>','0')
+        ->where('support_id',null)
         ->latest('id')
-        ->paginate(10);
-        return view('admin.tickets.index',compact('tickets','busqueda'));
+        ->paginate(4);
+
+        $my_tickets=Ticket::where('support_id',$user->id)
+        ->where('active','>','0')
+        ->latest('id')
+        ->paginate(4);
+
+        $solution_tickets=Ticket::where('support_id',$user->id)
+        ->where('active','<','1')
+        ->latest('id')
+        ->take(10)
+        ->get();
+      
+
+        return view('admin.tickets.index',compact('tickets','busqueda','my_tickets','solution_tickets'));
     }
 
     public function create()
@@ -149,7 +164,12 @@ class TicketController extends Controller
         $ticket->save();
         return redirect()->route('admin.tickets.index')->with(['estado'=>'success','titulo'=>'Concluido!','texto'=>'Se finalizó atención correctamente']);
     }
-
+    public function abrir(Ticket $ticket)
+    {
+        $ticket->active   = 1;
+        $ticket->save();
+        return redirect()->route('admin.tickets.index')->with(['estado'=>'success','titulo'=>'Concluido!','texto'=>'Se cambio de estado la atención correctamente']);
+    }
     public function derivar(Ticket $ticket)
     {
         #siempre tiene que traer al level principal porque de ahi comienza todo

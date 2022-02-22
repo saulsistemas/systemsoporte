@@ -17,8 +17,6 @@ class HomeController extends Controller
         $slq='SELECT start ,count(id) cantidad FROM tickets group by start';
         $tickets = DB::select($slq);
         #$dia_inicio = $cantidad_tickets_dias->start;
-        
-        
        
         $data=[];
         foreach ($tickets as $key=>$ticket) {

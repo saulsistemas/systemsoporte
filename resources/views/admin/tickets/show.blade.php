@@ -29,7 +29,7 @@
                     </thead>
                     <tbody id="" >
                           <tr>
-                              <td>{{$ticket->id}}</td>
+                              <td><a class="btn btn-primary" href="{{ route('admin.tickets.show', $ticket) }}">{{$ticket->id}}</a></td>
                               <td>{{$ticket->client->office->company->name}}</td>
                               <td>{{$ticket->subcategory->category->service->name.' / '.$ticket->subcategory->category->name.' / '.$ticket->subcategory->name}}</td>
                               <td>{{$ticket->start}}</td>
