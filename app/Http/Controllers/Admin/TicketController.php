@@ -38,7 +38,7 @@ class TicketController extends Controller
         $my_tickets=Ticket::where('support_id',$user->id)
         ->where('active','>','0')
         ->latest('id')
-        ->paginate(4);
+        ->get();
 
         $solution_tickets=Ticket::where('support_id',$user->id)
         ->where('active','<','1')
@@ -146,13 +146,22 @@ class TicketController extends Controller
         #poner validaciones video 27
         $company_id = $ticket->client->company_id;
         $project_id =Project::where('company_id',$company_id)->first()->id;
-        $level_id= Level::where('user_id',auth()->user()->id)->where('project_id',$project_id )->first()->id;
-        $ticket->level_id = $level_id;
-        $ticket->support_id = auth()->user()->id;
-        $ticket->assigned   = date('Y-m-d');
-        $ticket->assigned_time   = date('H:i:s');
-        $ticket->save();
-        return back()->with(['estado'=>'success','titulo'=>'Correcto!','texto'=>'Se te asignó incidencia']);
+        $level_exist= Level::where('user_id',auth()->user()->id)->first();
+                           
+        if (!empty($level_exist)) {
+            $level_id= Level::where('user_id',auth()->user()->id)
+                        ->where('project_id',$project_id )->first()->id; 
+            $ticket->level_id = $level_id;
+            $ticket->support_id = auth()->user()->id;
+            $ticket->assigned   = date('Y-m-d');
+            $ticket->assigned_time   = date('H:i:s');
+            $ticket->save();
+            return back()->with(['estado'=>'success','titulo'=>'Correcto!','texto'=>'Se te asignó incidencia']);
+        } else {
+            return back()->with(['estado'=>'danger','titulo'=>'Error!','texto'=>'no esta asignado a proyecto']);
+        }
+        
+        
     }
     public function resolver(Request $request, Ticket $ticket)
     {
@@ -167,6 +176,8 @@ class TicketController extends Controller
     public function abrir(Ticket $ticket)
     {
         $ticket->active   = 1;
+        $ticket->open   = date('Y-m-d');
+        $ticket->open_time   = date('H:i:s');
         $ticket->save();
         return redirect()->route('admin.tickets.index')->with(['estado'=>'success','titulo'=>'Concluido!','texto'=>'Se cambio de estado la atención correctamente']);
     }

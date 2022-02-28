@@ -29,9 +29,9 @@ class UserSeeder extends Seeder
             'name'=>'SAUL SANTAMARIA',
             'email'=>'ssantamaria@prisma.com',
             'role_id'=>3,
-            'company_id'=>1,
+            'company_id'=>2,
             'office_id'=>1,
-            'area_id'=>1,
+            'area_id'=>3,
             'password'=>bcrypt('123456789'),
         ])->assignRole('Soporte');
         User::create([
@@ -39,9 +39,9 @@ class UserSeeder extends Seeder
             'name'=>'PAOLO ROJAS',
             'email'=>'projas@prisma.com',
             'role_id'=>3,
-            'company_id'=>1,
+            'company_id'=>2,
             'office_id'=>1,
-            'area_id'=>1,
+            'area_id'=>3,
             'password'=>bcrypt('123456789'),
         ])->assignRole('Soporte');
         User::create([
@@ -49,9 +49,9 @@ class UserSeeder extends Seeder
             'name'=>'ESTEBAN ROMERO',
             'email'=>'eromero@prisma.com',
             'role_id'=>3,
-            'company_id'=>1,
+            'company_id'=>2,
             'office_id'=>1,
-            'area_id'=>1,
+            'area_id'=>3,
             'password'=>bcrypt('123456789'),
         ])->assignRole('Soporte');
         User::create([
@@ -60,8 +60,8 @@ class UserSeeder extends Seeder
             'email'=>'santamariaramos18@hotmail.com',
             'role_id'=>4,
             'company_id'=>2,
-            'office_id'=>2,
-            'area_id'=>7,
+            'office_id'=>1,
+            'area_id'=>5,
             'password'=>bcrypt('123456789'),
         ])->assignRole('Cliente');
         #User::factory(1)->create();

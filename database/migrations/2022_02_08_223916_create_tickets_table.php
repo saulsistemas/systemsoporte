@@ -27,6 +27,8 @@ class CreateTicketsTable extends Migration
             $table->time('assigned_time')->nullable();
             $table->date('end')->nullable();#fecha find
             $table->time('end_time')->nullable();
+            $table->date('open')->nullable();#fecha find
+            $table->time('open_time')->nullable();
             $table->longText('solution')->nullable();
 
             $table->integer('service_id');
