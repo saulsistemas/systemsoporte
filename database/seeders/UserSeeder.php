@@ -44,26 +44,7 @@ class UserSeeder extends Seeder
             'area_id'=>3,
             'password'=>bcrypt('123456789'),
         ])->assignRole('Soporte');
-        User::create([
-            'code'=>'0004',
-            'name'=>'ESTEBAN ROMERO',
-            'email'=>'eromero@prisma.com',
-            'role_id'=>3,
-            'company_id'=>2,
-            'office_id'=>1,
-            'area_id'=>3,
-            'password'=>bcrypt('123456789'),
-        ])->assignRole('Soporte');
-        User::create([
-            'code'=>'0005',
-            'name'=>'EMILY BERROA',
-            'email'=>'santamariaramos18@hotmail.com',
-            'role_id'=>4,
-            'company_id'=>2,
-            'office_id'=>1,
-            'area_id'=>5,
-            'password'=>bcrypt('123456789'),
-        ])->assignRole('Cliente');
+        
         #User::factory(1)->create();
     }
 }

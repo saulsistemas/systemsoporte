@@ -46,42 +46,55 @@ class HomeController extends Controller
                 INNER JOIN USERS u
                 ON u.id = t.client_id'.' WHERE u.company_id ='.$request->company_id.' 
                 group by t.start';
+                $total='SELECT u.company_id as empresa, count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE u.company_id ='.$request->company_id.' group by u.company_id' ;
+            
             } else if($request->company_id && $request->start && $request->end == null) { #SI SOLO ENVIO FECHAS
                 $slq='SELECT t.start as inicio,count(t.id) as cantidad FROM tickets t
                 INNER JOIN USERS u
                 ON u.id = t.client_id'.' WHERE u.company_id ='.$request->company_id.' AND 
                 t.start BETWEEN  '."'$request->start'".' AND '."'$end'".'
                 group by t.start';
+                $total='SELECT u.company_id as empresa, count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE u.company_id ='.$request->company_id.' AND  t.start BETWEEN  '."'$request->start'".' AND '."'$end'".'group by u.company_id';
+            
             }elseif($request->company_id && $request->start && $request->end){
                 $slq='SELECT t.start as inicio,count(t.id) as cantidad FROM tickets t
                 INNER JOIN USERS u
                 ON u.id = t.client_id'.' WHERE u.company_id ='.$request->company_id.' AND 
                 t.start BETWEEN  '."'$request->start'".' AND '."'$request->end'".'
                 group by t.start';
-            }elseif($request->company_id && $request->start ==null && $request->end){
+                $total='SELECT u.company_id as empresa, count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE u.company_id ='.$request->company_id.' AND  t.start BETWEEN  '."'$request->start'".' AND '."'$request->end'".' group by u.company_id';
+
+            }elseif($request->company_id && $request->start ==null && $request->end){#SI EXISTE COMPAÑIA Y FECHA FINAL JALA MES ACTUAL
                 $slq='SELECT t.start as inicio,count(t.id) as cantidad FROM tickets t
                 INNER JOIN USERS u
                 ON u.id = t.client_id'.' WHERE u.company_id ='.$request->company_id.' AND 
                 t.start BETWEEN  '."'$start'".' AND '."'$request->end'".'
                 group by t.start';
+                $total='SELECT u.company_id as empresa, count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE u.company_id ='.$request->company_id.' AND t.start BETWEEN  '."'$start'".' AND '."'$request->end'".'group by u.company_id';
+
             }elseif($request->company_id==null && $request->start  && $request->end){
                 $slq='SELECT t.start as inicio,count(t.id) as cantidad FROM tickets t
                 INNER JOIN USERS u
                 ON u.id = t.client_id'.' WHERE  
                 t.start BETWEEN  '."'$request->start'".' AND '."'$request->end'".'
                 group by t.start';
+                $total='SELECT  count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE  t.start BETWEEN  '."'$request->start'".' AND '."'$request->end'".'group by t.active>=0';
+
             }elseif($request->company_id==null && $request->start  && $request->end==null){
                 $slq='SELECT t.start as inicio,count(t.id) as cantidad FROM tickets t
                 INNER JOIN USERS u
                 ON u.id = t.client_id'.' WHERE  
                 t.start BETWEEN  '."'$request->start'".' AND '."'$end'".'
                 group by t.start';
+                $total='SELECT  count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE  t.start BETWEEN  '."'$request->start'".' AND '."'$end'".' group by t.active>=0';
+
             }elseif($request->company_id==null && $request->start==null  && $request->end){
                 $slq='SELECT t.start as inicio,count(t.id) as cantidad FROM tickets t
                 INNER JOIN USERS u
                 ON u.id = t.client_id'.' WHERE  
                 t.start BETWEEN  '."'$start'".' AND '."'$request->end'".'
                 group by t.start';
+                $total='SELECT  count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE t.start BETWEEN  '."'$start'".' AND '."'$request->end'".' group by t.active>=0';
             }
             
         }else{
@@ -91,15 +104,18 @@ class HomeController extends Controller
             ON u.id = t.client_id
             WHERE t.start BETWEEN  '."'$start'".' AND '."'$end'".'
             group by start;';
-            
+            $total ='SELECT  count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE t.start BETWEEN  '."'$start'".' AND '."'$end'".'
+            group by t.active>=0';
         }
        
         $tickets = DB::select($slq);
+        $totales = DB::select($total);
         $data=[];
         foreach ($tickets as $key=>$ticket) {
             $data['inicio'][]   = $ticket->inicio;
             $data['cantidad'][] = $ticket->cantidad;
         }
+        $data['totales']=$totales;
         $data['data']= json_encode($data);
         return view('home.index',compact('companies_projects_levels'),$data);
         ##$mes =02;

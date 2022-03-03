@@ -16,6 +16,10 @@ class Ticket extends Model
     public function level(){
         return $this->belongsTo(Level::class);
     }
+    #relacion 1 a muchos inversa (PERTENECE A UN COnTACTO)
+    public function contact(){
+        return $this->belongsTo(Contact::class);
+    }
     #relacion 1 a muchos inversa (PERTENECE A UN USUARIO SOPORTE)
     public function support(){
         return $this->belongsTo(User::class,'support_id');
@@ -47,9 +51,9 @@ class Ticket extends Model
     }
     public function setSeverity($sevetiry){
         switch ($sevetiry) {
-            case 0:
-                return 'BAJA';
             case 1:
+                return 'BAJA';
+            case 2:
                 return 'MEDIA';
             default:
                 return 'ALTA';

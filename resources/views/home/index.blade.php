@@ -73,6 +73,7 @@
  const ctx = document.getElementById('myChart').getContext('2d');
 const cData = JSON.parse('<?php echo $data;?>');
 console.log(cData);
+console.log(cData.totales[0].cantidad);
 ctx.height = 100;
 
 const myChart = new Chart(ctx, {
@@ -80,7 +81,7 @@ const myChart = new Chart(ctx, {
     data: {
         labels: cData.inicio,
         datasets: [{
-            label: '# DIAS DE LA SEMANA',
+            label: 'TOTAL TIKETS = '+cData.totales[0].cantidad,
             data: cData.cantidad,
             //data: [12, 13, 3, 5, 2, 3],
             backgroundColor: [

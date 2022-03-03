@@ -75,13 +75,14 @@
                                 <thead class="text-white bg-primary">
                                     <th>NRO</th>
                                     <th>FECHA</th>
+                                    <th>CONTACTO</th>
                                     <th>EMPRESA</th>
                                     <th>SEVERIDAD</th>
                                     <th>CLIENTE</th>
                                     <th>CATEGORIZACIÓN</th>
                                     <th>TITULO</th>
                                     <th>ESTADO</th>
-                                    <th>ASIGNADO A</th>
+                                    <th>ASIGNADO</th>
                                     <th>OPCIONES</th>
                                 </thead>
                                 <tbody>
@@ -90,9 +91,12 @@
                                             <td><a class="btn btn-primary"
                                                     href="{{ route('admin.tickets.show', $ticket) }}">{{ $ticket->id }}</a></td>
                                             <td>{{ $ticket->start }}</td>
+                                            <td>{{ $ticket->contact->name }}</td>
                                             <td>{{ $ticket->client->office->company->name }}</td>
                                             <td>{{ $ticket->setSeverity($ticket->severity) }}</td>
-                                            <td>{{ $ticket->client->name }}</td>
+                                            <td>{{ $ticket->client->name }}<br>
+                                                {{ $ticket->client->last_name }}
+                                            </td>
                                             <td>
                                                 {{ $ticket->subcategory->category->service->name }}<br>
                                                 {{ $ticket->subcategory->category->name }}<br>
@@ -155,7 +159,9 @@
                                             <td>{{ $ticket->start }}</td>
                                             <td>{{ $ticket->client->office->company->name }}</td>
                                             <td>{{ $ticket->setSeverity($ticket->severity) }}</td>
-                                            <td>{{ $ticket->client->name }}</td>
+                                            <td>{{ $ticket->client->name }}<br>
+                                                {{ $ticket->client->last_name }}
+                                            </td>
                                             <td>
                                                 {{ $ticket->subcategory->category->service->name }}<br>
                                                 {{ $ticket->subcategory->category->name }}<br>
@@ -180,12 +186,14 @@
                             <table class="table table-hover table-bordered">
                                 <thead class="text-white bg-success">
                                     <th>NRO</th>
-                                    <th>FECHA</th>
+                                    <th>FECHA_INI</th>
+                                    <th>FECHA_FIN</th>
                                     <th>EMPRESA</th>
                                     <th>SEVERIDAD</th>
                                     <th>CLIENTE</th>
                                     <th>CATEGORIZACIÓN</th>
                                     <th>TITULO</th>
+                                    <th>CONTACTO</th>
                                     <th>ESTADO</th>
                                     <th>ASIGNADO A</th>
                                     <th>ABRIR</th>
@@ -195,15 +203,19 @@
                                         <tr>
                                             <td>{{ $ticket->id }}</td>
                                             <td>{{ $ticket->start }}</td>
+                                            <td>{{ $ticket->end }}</td>
                                             <td>{{ $ticket->client->office->company->name }}</td>
                                             <td>{{ $ticket->setSeverity($ticket->severity) }}</td>
-                                            <td>{{ $ticket->client->name }}</td>
+                                            <td>{{ $ticket->client->name }}<br>
+                                                {{ $ticket->client->last_name }}
+                                            </td>
                                             <td>
                                                 {{ $ticket->subcategory->category->service->name }}<br>
                                                 {{ $ticket->subcategory->category->name }}<br>
                                                 {{ $ticket->subcategory->name }}
                                             </td>
                                             <td>{{ $ticket->setTitleShort($ticket->title) }}</td>
+                                            <td>{{ $ticket->contact->name }}</td>
                                             <td>{{ $ticket->getIncident() }}</td>
                                             <td>{{ $ticket->getSupport() }}</td>
                                             <td>

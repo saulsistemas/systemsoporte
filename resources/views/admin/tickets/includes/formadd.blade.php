@@ -34,10 +34,10 @@
 <div class="form-group row">
     <label class="col-sm-2" for="client_id">Cliente :</label>
     <div class="col-sm-10">
-        <select name="client_id" id="client_class" class="form-control client_class">
+        <select name="client_id" id="client_class" class="form-control client_class" required>
             <option value="">Seleccione Cliente</option>
             @foreach ($users as $user)
-                <option value="{{$user->id}}" {{old('client_id', 966) == $user->id ? 'selected' : ''}} >{{$user->name .' - '.$user->office->name.' - '.$user->office->company->name}}</option>
+                <option value="{{$user->id}}" {{old('client_id', 966) == $user->id ? 'selected' : ''}} >{{$user->name .' '.$user->last_name .' - '.$user->office->name.' - '.$user->office->company->name}}</option>
             @endforeach
         </select>
         @error('client_id')
