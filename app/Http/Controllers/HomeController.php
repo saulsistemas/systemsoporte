@@ -47,6 +47,7 @@ class HomeController extends Controller
                 ON u.id = t.client_id'.' WHERE u.company_id ='.$request->company_id.' 
                 group by t.start';
                 $total='SELECT u.company_id as empresa, count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE u.company_id ='.$request->company_id.' group by u.company_id' ;
+                $user_sql='SELECT u.company_id as empresa,u.name,u.last_name, count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE u.company_id ='.$request->company_id.' group by u.company_id, u.id,u.name,u.last_name order by cantidad desc';
             
             } else if($request->company_id && $request->start && $request->end == null) { #SI SOLO ENVIO FECHAS
                 $slq='SELECT t.start as inicio,count(t.id) as cantidad FROM tickets t
@@ -106,10 +107,12 @@ class HomeController extends Controller
             group by start;';
             $total ='SELECT  count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE t.start BETWEEN  '."'$start'".' AND '."'$end'".'
             group by t.active>=0';
+            $user_sql='SELECT u.company_id as empresa,u.name,u.last_name, count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE t.start BETWEEN  '."'$start'".' AND '."'$end'".' group by u.company_id, u.id,u.name,u.last_name order by cantidad desc';
         }
        
         $tickets = DB::select($slq);
         $totales = DB::select($total);
+        $usuarios = DB::select($user_sql);
         $data=[];
         foreach ($tickets as $key=>$ticket) {
             $data['inicio'][]   = $ticket->inicio;
@@ -117,7 +120,7 @@ class HomeController extends Controller
         }
         $data['totales']=$totales;
         $data['data']= json_encode($data);
-        return view('home.index',compact('companies_projects_levels'),$data);
+        return view('home.index',compact('companies_projects_levels','usuarios'),$data);
         ##$mes =02;
         ##$anio=2022;
         ##$total_dia = Carbon::now()->month($mes)->daysInMonth;

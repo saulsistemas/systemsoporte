@@ -62,6 +62,42 @@
            
     </div>
 </div>
+
+<div class="card bg-light mb-3" >
+    <div class="card-header">
+        <h3 class="card-title">USUARIOS</h3>
+        <!-- /.card-tools -->
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <td>NOMBRE</td>
+                <td>APELLIDO</td>
+                <td>CANTIDAD</td>
+                
+            </thead>
+            <tbody>
+               
+                
+                <?php  $total=0; ?>
+                @foreach ($usuarios as $user)
+                    <tr>
+                        
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->last_name}}</td>
+                        <td>{{$user->cantidad;}}</td>
+                        <?php $total=$total+$user->cantidad ?>
+                    </tr>
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4"> <h2>TOTAL {{$total}}</h2> </td>
+                </tr>
+            </tfoot>    
+        </table>  
+    </div>
+</div>
 @stop
 
 
