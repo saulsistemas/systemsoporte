@@ -62,42 +62,113 @@
            
     </div>
 </div>
-
-<div class="card bg-light mb-3" >
-    <div class="card-header">
-        <h3 class="card-title">USUARIOS</h3>
-        <!-- /.card-tools -->
+<div class="row">
+    <div class="col-md-4">
+        <div class="card bg-light mb-3" >
+            <div class="card-header">
+                <h3 class="card-title">CANTIDAD DE ATENCIONES POR USUARIO</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <th>NOMBRE</th>
+                        <th>APELLIDO</th>
+                        <th>CANTIDAD</th>
+                    </thead>
+                    <tbody>
+                        <?php  $total=0; ?>
+                        @foreach ($usuarios as $user)
+                            <tr>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->last_name}}</td>
+                                <td>{{$user->cantidad;}}</td>
+                                <?php $total=$total+$user->cantidad ?>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"> <h2>TOTAL {{$total}}</h2> </td>
+                        </tr>
+                    </tfoot>    
+                </table>  
+            </div>
+        </div>
     </div>
-    <div class="card-body">
-        <table class="table table-striped">
-            <thead>
-                <td>NOMBRE</td>
-                <td>APELLIDO</td>
-                <td>CANTIDAD</td>
-                
-            </thead>
-            <tbody>
-               
-                
-                <?php  $total=0; ?>
-                @foreach ($usuarios as $user)
-                    <tr>
-                        
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->last_name}}</td>
-                        <td>{{$user->cantidad;}}</td>
-                        <?php $total=$total+$user->cantidad ?>
-                    </tr>
-                @endforeach
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="4"> <h2>TOTAL {{$total}}</h2> </td>
-                </tr>
-            </tfoot>    
-        </table>  
+    <div class="col-md-4">
+        <div class="card bg-light mb-3" >
+            <div class="card-header">
+                <h3 class="card-title">CANTIDAD DE SERVICIOS</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <th>EMPRESA</th>
+                        <th>NOMBRE</th>
+                        <th>CANTIDAD</th>
+                        {{-- <th>INFO</th> --}}
+                    </thead>
+                    <tbody>
+                        <?php  $total=0; ?>
+                        @foreach ($services as $service)
+                            <tr>
+                                <td>{{$service->empresa}}</td>
+                                <td>{{$service->servicios}}</td>
+                                <td>{{$service->cantidad;}}</td>
+                                {{-- <td><a class="btn btn-primary" href="#" value="{{$service->servicio_id}}"><i class="fas fa-ticket-alt"></i></a></td> --}}
+                                
+                                <?php $total=$total+$service->cantidad ?>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"> <h2>TOTAL {{$total}}</h2> </td>
+                        </tr>
+                    </tfoot>    
+                </table>  
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-light mb-3" >
+            <div class="card-header">
+                <h3 class="card-title">CANTIDAD DE CATEGORIAS</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <th>CATEGORIA</th>
+                        <th>SUBCATEGORIA</th>
+                        <th>CANTIDAD</th>
+                        {{-- <th>INFO</th> --}}
+                    </thead>
+                    <tbody>
+                        <?php  $total=0; ?>
+                        @foreach ($categories as $category)
+                            <tr>
+                                <td>{{$category->categorias}}</td>
+                                <td>{{$category->subcategorias}}</td>
+                                <td>{{$category->cantidad;}}</td>
+                                {{-- <td><a class="btn btn-primary" href="#" value="{{$category->servicio_id}}"><i class="fas fa-ticket-alt"></i></a></td> --}}
+                                
+                                <?php $total=$total+$category->cantidad ?>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"> <h2>TOTAL {{$total}}</h2> </td>
+                        </tr>
+                    </tfoot>    
+                </table>  
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
 @stop
 
 

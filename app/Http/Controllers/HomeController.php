@@ -48,7 +48,25 @@ class HomeController extends Controller
                 group by t.start';
                 $total='SELECT u.company_id as empresa, count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE u.company_id ='.$request->company_id.' group by u.company_id' ;
                 $user_sql='SELECT u.company_id as empresa,u.name,u.last_name, count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE u.company_id ='.$request->company_id.' group by u.company_id, u.id,u.name,u.last_name order by cantidad desc';
-            
+                $servicios='SELECT sv.id servicio_id,cp.name as empresa,sv.name as servicios, count(t.id) as cantidad 
+                FROM tickets t 
+                INNER JOIN USERS u ON u.id = t.client_id 
+                INNER JOIN companies cp ON cp.id = u.company_id 
+                INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+                INNER JOIN categories ct ON ct.id = sc.category_id 
+                INNER JOIN services sv ON sv.id = ct.service_id 
+                WHERE u.company_id ='.$request->company_id.' 
+                group by servicio_id,empresa,servicios order by cantidad desc';
+                $categorias='SELECT ct.id categoria_id,cp.name as empresa,ct.name as categorias, sc.name as subcategorias,count(t.id) as cantidad 
+                FROM tickets t 
+                INNER JOIN USERS u ON u.id = t.client_id 
+                INNER JOIN companies cp ON cp.id = u.company_id 
+                INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+                INNER JOIN categories ct ON ct.id = sc.category_id 
+                INNER JOIN services sv ON sv.id = ct.service_id 
+                WHERE u.company_id ='.$request->company_id.' 
+                group by categoria_id,empresa,categorias,subcategorias order by cantidad desc';
+                
             } else if($request->company_id && $request->start && $request->end == null) { #SI SOLO ENVIO FECHAS
                 $slq='SELECT t.start as inicio,count(t.id) as cantidad FROM tickets t
                 INNER JOIN USERS u
@@ -56,7 +74,32 @@ class HomeController extends Controller
                 t.start BETWEEN  '."'$request->start'".' AND '."'$end'".'
                 group by t.start';
                 $total='SELECT u.company_id as empresa, count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE u.company_id ='.$request->company_id.' AND  t.start BETWEEN  '."'$request->start'".' AND '."'$end'".'group by u.company_id';
-            
+                $user_sql='SELECT u.company_id as empresa,u.name,u.last_name, count(t.id) as cantidad FROM tickets t
+                INNER JOIN USERS u
+                ON u.id = t.client_id WHERE u.company_id ='.$request->company_id.' AND 
+                t.start BETWEEN  '."'$request->start'".' AND '."'$end'".'
+                group by u.company_id, u.id,u.name,u.last_name order by cantidad desc';
+                $servicios='SELECT sv.id servicio_id,cp.name as empresa,sv.name as servicios, count(t.id) as cantidad 
+                FROM tickets t 
+                INNER JOIN USERS u ON u.id = t.client_id 
+                INNER JOIN companies cp ON cp.id = u.company_id 
+                INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+                INNER JOIN categories ct ON ct.id = sc.category_id 
+                INNER JOIN services sv ON sv.id = ct.service_id 
+                WHERE u.company_id ='.$request->company_id.' AND 
+                t.start BETWEEN  '."'$request->start'".' AND '."'$end'".'
+                group by servicio_id,empresa,servicios order by cantidad desc';
+                $categorias='SELECT ct.id categoria_id,cp.name as empresa,ct.name as categorias, sc.name as subcategorias,count(t.id) as cantidad 
+                FROM tickets t 
+                INNER JOIN USERS u ON u.id = t.client_id 
+                INNER JOIN companies cp ON cp.id = u.company_id 
+                INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+                INNER JOIN categories ct ON ct.id = sc.category_id 
+                INNER JOIN services sv ON sv.id = ct.service_id 
+                WHERE u.company_id ='.$request->company_id.' AND 
+                t.start BETWEEN  '."'$request->start'".' AND '."'$end'".'
+                group by categoria_id,empresa,categorias,subcategorias order by cantidad desc';
+           
             }elseif($request->company_id && $request->start && $request->end){
                 $slq='SELECT t.start as inicio,count(t.id) as cantidad FROM tickets t
                 INNER JOIN USERS u
@@ -64,6 +107,31 @@ class HomeController extends Controller
                 t.start BETWEEN  '."'$request->start'".' AND '."'$request->end'".'
                 group by t.start';
                 $total='SELECT u.company_id as empresa, count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE u.company_id ='.$request->company_id.' AND  t.start BETWEEN  '."'$request->start'".' AND '."'$request->end'".' group by u.company_id';
+                $user_sql='SELECT u.company_id as empresa,u.name,u.last_name,count(t.id) as cantidad FROM tickets t
+                INNER JOIN USERS u
+                ON u.id = t.client_id WHERE u.company_id ='.$request->company_id.' AND 
+                t.start BETWEEN  '."'$request->start'".' AND '."'$request->end'".'
+                group by u.company_id, u.id,u.name,u.last_name order by cantidad desc';
+                $servicios='SELECT sv.id servicio_id,cp.name as empresa,sv.name as servicios, count(t.id) as cantidad 
+                FROM tickets t 
+                INNER JOIN USERS u ON u.id = t.client_id 
+                INNER JOIN companies cp ON cp.id = u.company_id 
+                INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+                INNER JOIN categories ct ON ct.id = sc.category_id 
+                INNER JOIN services sv ON sv.id = ct.service_id 
+                WHERE u.company_id ='.$request->company_id.' AND 
+                t.start BETWEEN  '."'$request->start'".' AND '."'$request->end'".'
+                group by servicio_id,empresa,servicios order by cantidad desc';
+                $categorias='SELECT ct.id categoria_id,cp.name as empresa,ct.name as categorias, sc.name as subcategorias,count(t.id) as cantidad 
+                FROM tickets t 
+                INNER JOIN USERS u ON u.id = t.client_id 
+                INNER JOIN companies cp ON cp.id = u.company_id 
+                INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+                INNER JOIN categories ct ON ct.id = sc.category_id 
+                INNER JOIN services sv ON sv.id = ct.service_id 
+                WHERE u.company_id ='.$request->company_id.' AND 
+                t.start BETWEEN  '."'$request->start'".' AND '."'$request->end'".'
+                group by categoria_id,empresa,categorias,subcategorias order by cantidad desc';
 
             }elseif($request->company_id && $request->start ==null && $request->end){#SI EXISTE COMPAÑIA Y FECHA FINAL JALA MES ACTUAL
                 $slq='SELECT t.start as inicio,count(t.id) as cantidad FROM tickets t
@@ -72,6 +140,31 @@ class HomeController extends Controller
                 t.start BETWEEN  '."'$start'".' AND '."'$request->end'".'
                 group by t.start';
                 $total='SELECT u.company_id as empresa, count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE u.company_id ='.$request->company_id.' AND t.start BETWEEN  '."'$start'".' AND '."'$request->end'".'group by u.company_id';
+                $user_sql='SELECT u.company_id as empresa,u.name,u.last_name,count(t.id) as cantidad FROM tickets t
+                INNER JOIN USERS u
+                ON u.id = t.client_id WHERE u.company_id ='.$request->company_id.' AND 
+                t.start BETWEEN  '."'$start'".' AND '."'$request->end'".'
+                group by u.company_id, u.id,u.name,u.last_name order by cantidad desc';
+                $servicios='SELECT sv.id servicio_id,cp.name as empresa,sv.name as servicios, count(t.id) as cantidad 
+                FROM tickets t 
+                INNER JOIN USERS u ON u.id = t.client_id 
+                INNER JOIN companies cp ON cp.id = u.company_id 
+                INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+                INNER JOIN categories ct ON ct.id = sc.category_id 
+                INNER JOIN services sv ON sv.id = ct.service_id 
+                WHERE u.company_id ='.$request->company_id.' AND 
+                t.start BETWEEN  '."'$start'".' AND '."'$request->end'".'
+                group by servicio_id,empresa,servicios order by cantidad desc';
+                $categorias='SELECT ct.id categoria_id,cp.name as empresa,ct.name as categorias, sc.name as subcategorias,count(t.id) as cantidad 
+                FROM tickets t 
+                INNER JOIN USERS u ON u.id = t.client_id 
+                INNER JOIN companies cp ON cp.id = u.company_id 
+                INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+                INNER JOIN categories ct ON ct.id = sc.category_id 
+                INNER JOIN services sv ON sv.id = ct.service_id 
+                WHERE u.company_id ='.$request->company_id.' AND 
+                t.start BETWEEN  '."'$start'".' AND '."'$request->end'".'
+                group by categoria_id,empresa,categorias,subcategorias order by cantidad desc';
 
             }elseif($request->company_id==null && $request->start  && $request->end){
                 $slq='SELECT t.start as inicio,count(t.id) as cantidad FROM tickets t
@@ -80,6 +173,29 @@ class HomeController extends Controller
                 t.start BETWEEN  '."'$request->start'".' AND '."'$request->end'".'
                 group by t.start';
                 $total='SELECT  count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE  t.start BETWEEN  '."'$request->start'".' AND '."'$request->end'".'group by t.active>=0';
+                $user_sql='SELECT u.company_id as empresa,u.name,u.last_name, count(t.id) as cantidad FROM tickets t
+                INNER JOIN USERS u
+                ON u.id = t.client_id WHERE  
+                t.start BETWEEN  '."'$request->start'".' AND '."'$request->end'".'
+                group by u.company_id, u.id,u.name,u.last_name order by cantidad desc';
+                $servicios='SELECT sv.id servicio_id,cp.name as empresa,sv.name as servicios, count(t.id) as cantidad 
+                FROM tickets t 
+                INNER JOIN USERS u ON u.id = t.client_id 
+                INNER JOIN companies cp ON cp.id = u.company_id 
+                INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+                INNER JOIN categories ct ON ct.id = sc.category_id 
+                INNER JOIN services sv ON sv.id = ct.service_id 
+                WHERE t.start BETWEEN  '."'$request->start'".' AND '."'$request->end'".'
+                group by servicio_id,empresa,servicios order by cantidad desc';
+                $categorias='SELECT ct.id categoria_id,cp.name as empresa,ct.name as categorias, sc.name as subcategorias,count(t.id) as cantidad 
+                FROM tickets t 
+                INNER JOIN USERS u ON u.id = t.client_id 
+                INNER JOIN companies cp ON cp.id = u.company_id 
+                INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+                INNER JOIN categories ct ON ct.id = sc.category_id 
+                INNER JOIN services sv ON sv.id = ct.service_id 
+                WHERE t.start BETWEEN  '."'$request->start'".' AND '."'$request->end'".'
+                group by categoria_id,empresa,categorias,subcategorias order by cantidad desc';
 
             }elseif($request->company_id==null && $request->start  && $request->end==null){
                 $slq='SELECT t.start as inicio,count(t.id) as cantidad FROM tickets t
@@ -88,6 +204,29 @@ class HomeController extends Controller
                 t.start BETWEEN  '."'$request->start'".' AND '."'$end'".'
                 group by t.start';
                 $total='SELECT  count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE  t.start BETWEEN  '."'$request->start'".' AND '."'$end'".' group by t.active>=0';
+                $user_sql='SELECT u.company_id as empresa,u.name,u.last_name, count(t.id) as cantidad FROM tickets t
+                INNER JOIN USERS u
+                ON u.id = t.client_id  WHERE  
+                t.start BETWEEN  '."'$request->start'".' AND '."'$end'".'
+                group by u.company_id, u.id,u.name,u.last_name order by cantidad desc';
+                $servicios='SELECT sv.id servicio_id,cp.name as empresa,sv.name as servicios, count(t.id) as cantidad 
+                FROM tickets t 
+                INNER JOIN USERS u ON u.id = t.client_id 
+                INNER JOIN companies cp ON cp.id = u.company_id 
+                INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+                INNER JOIN categories ct ON ct.id = sc.category_id 
+                INNER JOIN services sv ON sv.id = ct.service_id 
+                WHERE t.start BETWEEN  '."'$request->start'".' AND '."'$end'".'
+                group by servicio_id,empresa,servicios order by cantidad desc';
+                $categorias='SELECT ct.id categoria_id,cp.name as empresa,ct.name as categorias, sc.name as subcategorias,count(t.id) as cantidad 
+                FROM tickets t 
+                INNER JOIN USERS u ON u.id = t.client_id 
+                INNER JOIN companies cp ON cp.id = u.company_id 
+                INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+                INNER JOIN categories ct ON ct.id = sc.category_id 
+                INNER JOIN services sv ON sv.id = ct.service_id 
+                WHERE t.start BETWEEN  '."'$request->start'".' AND '."'$end'".'
+                group by categoria_id,empresa,categorias,subcategorias order by cantidad desc';
 
             }elseif($request->company_id==null && $request->start==null  && $request->end){
                 $slq='SELECT t.start as inicio,count(t.id) as cantidad FROM tickets t
@@ -96,6 +235,30 @@ class HomeController extends Controller
                 t.start BETWEEN  '."'$start'".' AND '."'$request->end'".'
                 group by t.start';
                 $total='SELECT  count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE t.start BETWEEN  '."'$start'".' AND '."'$request->end'".' group by t.active>=0';
+                $user_sql='SELECT u.company_id as empresa,u.name,u.last_name, count(t.id) as cantidad FROM tickets t
+                INNER JOIN USERS u
+                ON u.id = t.client_id  WHERE  
+                t.start BETWEEN  '."'$start'".' AND '."'$request->end'".'
+                group by u.company_id, u.id,u.name,u.last_name order by cantidad desc';
+                $servicios='SELECT sv.id servicio_id,cp.name as empresa,sv.name as servicios, count(t.id) as cantidad 
+                FROM tickets t 
+                INNER JOIN USERS u ON u.id = t.client_id 
+                INNER JOIN companies cp ON cp.id = u.company_id 
+                INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+                INNER JOIN categories ct ON ct.id = sc.category_id 
+                INNER JOIN services sv ON sv.id = ct.service_id 
+                WHERE t.start BETWEEN  '."'$start'".' AND '."'$request->end'".'
+                group by servicio_id,empresa,servicios order by cantidad desc';
+                $categorias='SELECT ct.id categoria_id,cp.name as empresa,ct.name as categorias, sc.name as subcategorias,count(t.id) as cantidad 
+                FROM tickets t 
+                INNER JOIN USERS u ON u.id = t.client_id 
+                INNER JOIN companies cp ON cp.id = u.company_id 
+                INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+                INNER JOIN categories ct ON ct.id = sc.category_id 
+                INNER JOIN services sv ON sv.id = ct.service_id 
+                WHERE t.start BETWEEN  '."'$start'".' AND '."'$request->end'".'
+                group by categoria_id,empresa,categorias,subcategorias order by cantidad desc';
+
             }
             
         }else{
@@ -108,11 +271,31 @@ class HomeController extends Controller
             $total ='SELECT  count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE t.start BETWEEN  '."'$start'".' AND '."'$end'".'
             group by t.active>=0';
             $user_sql='SELECT u.company_id as empresa,u.name,u.last_name, count(t.id) as cantidad FROM tickets t INNER JOIN USERS u ON u.id = t.client_id WHERE t.start BETWEEN  '."'$start'".' AND '."'$end'".' group by u.company_id, u.id,u.name,u.last_name order by cantidad desc';
+            $servicios='SELECT sv.id servicio_id,cp.name as empresa,sv.name as servicios, count(t.id) as cantidad 
+            FROM tickets t 
+            INNER JOIN USERS u ON u.id = t.client_id 
+            INNER JOIN companies cp ON cp.id = u.company_id 
+            INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+            INNER JOIN categories ct ON ct.id = sc.category_id 
+            INNER JOIN services sv ON sv.id = ct.service_id 
+            WHERE t.start BETWEEN  '."'$start'".' AND '."'$end'".'
+            group by servicio_id,empresa,servicios order by cantidad desc';
+            $categorias='SELECT ct.id categoria_id,cp.name as empresa,ct.name as categorias, sc.name as subcategorias,count(t.id) as cantidad 
+            FROM tickets t 
+            INNER JOIN USERS u ON u.id = t.client_id 
+            INNER JOIN companies cp ON cp.id = u.company_id 
+            INNER JOIN subcategories sc ON sc.id = t.subcategory_id 
+            INNER JOIN categories ct ON ct.id = sc.category_id 
+            INNER JOIN services sv ON sv.id = ct.service_id 
+            WHERE t.start BETWEEN  '."'$start'".' AND '."'$end'".'
+            group by categoria_id,empresa,categorias,subcategorias order by cantidad desc';
         }
        
         $tickets = DB::select($slq);
         $totales = DB::select($total);
         $usuarios = DB::select($user_sql);
+        $services = DB::select($servicios);
+        $categories = DB::select($categorias);
         $data=[];
         foreach ($tickets as $key=>$ticket) {
             $data['inicio'][]   = $ticket->inicio;
@@ -120,40 +303,7 @@ class HomeController extends Controller
         }
         $data['totales']=$totales;
         $data['data']= json_encode($data);
-        return view('home.index',compact('companies_projects_levels','usuarios'),$data);
-        ##$mes =02;
-        ##$anio=2022;
-        ##$total_dia = Carbon::now()->month($mes)->daysInMonth;
-
-        ##$slq='SELECT start ,count(id) cantidad FROM tickets group by start';
-        #$slq='SELECT t.start as inicio,count(t.id) as cantidad FROM tickets t
-        #INNER JOIN USERS u
-        #ON u.id = t.client_id
-        #group by start;';
-        #$tickets = DB::select($slq);
-        ##$dia_inicio = $cantidad_tickets_dias->start;
-       
-        #$data=[];
-        #foreach ($tickets as $key=>$ticket) {
-        #    $data['inicio'][]   = $ticket->inicio;
-        #    $data['cantidad'][] = $ticket->cantidad;
-        #    
-        #}
-        ##$todos_los_dias = [];
-        ##for ($i=1; $i <=$total_dia ; $i++) { 
-        ##     $todos_los_dias[]=$anio.'-'.$mes.'-'.$i;
-        ##    
-        ##    if($todos_los_dias[$i-1] = $data['inicio']){
-        ##        return $todos_los_dias;
-        ##    }
-        ##}
-        # #$array_resultante= array_merge($data['inicio'],$todos_los_dias);
-        # #return $unicos = array_unique($array_resultante);
-
-
-        ##$data['todos']= $todos_los_dias;
-    
-        #$data['data']= json_encode($data);
-        #return view('home.index',compact('companies_projects_levels'),$data);
+        return view('home.index',compact('companies_projects_levels','usuarios','services','categories'),$data);
+        
     }
 }
