@@ -95,6 +95,45 @@
             </div>
         </div>
     </div>
+    <div class="col-md-8">
+        <div class="card bg-light mb-3" >
+            <div class="card-header">
+                <h3 class="card-title">CANTIDAD DE CATEGORIAS</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <th>SERVICIO</th>
+                        <th>CATEGORIA</th>
+                        <th>SUBCATEGORIA</th>
+                        <th>CANTIDAD</th>
+                        {{-- <th>INFO</th> --}}
+                    </thead>
+                    <tbody>
+                        <?php  $total=0; ?>
+                        @foreach ($categories as $category)
+                            <tr>
+                                <td>{{$category->servicios}}</td>
+                                <td>{{$category->categorias}}</td>
+                                <td>{{$category->subcategorias}}</td>
+                                <td>{{$category->cantidad;}}</td>
+                                {{-- <td><a class="btn btn-primary" href="#" value="{{$category->servicio_id}}"><i class="fas fa-ticket-alt"></i></a></td> --}}
+                                
+                                <?php $total=$total+$category->cantidad ?>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"> <h2>TOTAL {{$total}}</h2> </td>
+                        </tr>
+                    </tfoot>    
+                </table>  
+                </div>
+            </div>
+        </div>
+    </div>    
     <div class="col-md-4">
         <div class="card bg-light mb-3" >
             <div class="card-header">
@@ -130,43 +169,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card bg-light mb-3" >
-            <div class="card-header">
-                <h3 class="card-title">CANTIDAD DE CATEGORIAS</h3>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <th>CATEGORIA</th>
-                        <th>SUBCATEGORIA</th>
-                        <th>CANTIDAD</th>
-                        {{-- <th>INFO</th> --}}
-                    </thead>
-                    <tbody>
-                        <?php  $total=0; ?>
-                        @foreach ($categories as $category)
-                            <tr>
-                                <td>{{$category->categorias}}</td>
-                                <td>{{$category->subcategorias}}</td>
-                                <td>{{$category->cantidad;}}</td>
-                                {{-- <td><a class="btn btn-primary" href="#" value="{{$category->servicio_id}}"><i class="fas fa-ticket-alt"></i></a></td> --}}
-                                
-                                <?php $total=$total+$category->cantidad ?>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="4"> <h2>TOTAL {{$total}}</h2> </td>
-                        </tr>
-                    </tfoot>    
-                </table>  
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
 
 @stop
